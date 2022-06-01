@@ -1,0 +1,55 @@
+@import url(root.css);
+/* Вход в систему */
+
+.signform{
+    width: 100%;
+    height: 99vh;
+    background-color: var(--liteGray-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+footer{
+    margin-top: 0 !important;
+}
+main {
+    padding-top: 0px !important;
+}
+
+.signform__formWrap{
+    width: 420px;
+    height: 436px;
+    padding: 51px;
+    padding-bottom: 20px;
+}
+
+.signform__form{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signform__form form{
+    width: 100%;
+}
+
+.signform__formPic{
+    margin-bottom: 55px;
+}
+
+.signform__form .inputWrap:not(:last-child){
+    margin-bottom: 30px;
+}
+
+.signform__formBtn{
+    padding-top: 37px;
+}
+
+.signform__formErrors{
+    padding-top: 10px;
+    color: var(--orange-color);
+    font-size: 15px;
+}
