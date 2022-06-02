@@ -1,9 +1,23 @@
 import React from "react";
 import getCookie from '../functions/getCookie';
 import UserMenu from "../elements/UserMenu";
+import getUserInfo from "../functions/getUserInfo";
 
 function Header(){
     const KEY = getCookie("userKey");
+    const [name, setName] = React.useState("");
+    const [menuActive, setMenuActive] = React.useState(true);
+    React.useEffect(()=>{
+        if (KEY.length > 10){
+            const data = getUserInfo(setName, "user");
+        }else{
+            setName("Личный кабинет")
+            setMenuActive(false);
+        }
+        
+    }, []);
+
+
 
     return(
         <header>
@@ -12,7 +26,7 @@ function Header(){
                     <div className="header__phone">
                         <p>тел:<a href="tel:88007759990">8 (800) 775-99-90</a></p>
                     </div>
-                    {KEY.length > 10 && <UserMenu/>}
+                    <UserMenu name={name} menuActive={menuActive}/>
                 </div>
             </div>
             <div className="header__bottom">

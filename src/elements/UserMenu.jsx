@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import setCookie from "../functions/setCookie";
 
-function UserMenu(){
+function UserMenu(props){
     const [menuActive, setMenuActive] = React.useState(true);
     const menuElem =React.useRef();
 
@@ -27,15 +27,18 @@ function UserMenu(){
             </div>
 
             <div className="unselectable header__name" onClick={showMenu}>
-                <p>Черепанов Алексей Дмитриевич</p>
+                <p>{typeof(props.name) == "string" && props.name}</p>
             </div>
 
+            {props.menuActive &&
             <div className="header__arr">
                 <svg width="6" height="5" viewBox="0 0 6 5" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M3 4.5L5.59808 0H0.401924L3 4.5Z" fill="#317EE4"/>
                 </svg>                                
             </div>
-
+            }
+            
+            {props.menuActive &&
             <div ref={menuElem} className={classNames('header__profileMenu', {"header__profileMenu--hidden": menuActive})}>
                 <div className="header__profileMenuItem header__profileMenuItem--exit" onClick={exit}>
                     <p>Выйти из системы</p>
@@ -45,6 +48,7 @@ function UserMenu(){
                     <p>Сменить пользователя</p>
                 </div>
             </div>
+            }
         </div>
     )
 }
