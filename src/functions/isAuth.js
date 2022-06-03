@@ -12,13 +12,15 @@ const isAuth = async ()=> {
         .then(function (response) {
             const data = response.data;
             if (data.status == 0){
-                setCookie('userKey', "")
+                setCookie('userKey', "");
+                window.location.href="/login";
             }
         }).catch(()=>{
-            setCookie('userKey', "")
+            setCookie('userKey', "");
+            window.location.href="/login";
         })
     }else{
-        setCookie('userKey', "")
+        setCookie('userKey', "");
     }
    
 }

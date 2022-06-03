@@ -8,6 +8,7 @@ function SignPage (){
 
     const KEY = getCookie("userKey");
 
+    
     if (!(KEY.length > 10)){
     return(
         <section className="signform">

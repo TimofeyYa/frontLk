@@ -8,7 +8,13 @@ import MainPageGrafics from "../elements/MainPageGrafics";
 
 function MainPage (){    
     const KEY = getCookie("userKey");
+    
     const [date,setDate] = React.useState(new Date());
+
+    if (!KEY){
+        window.location.href = '/login';
+        return;
+    }
 
     if (KEY.length > 10){
         return(

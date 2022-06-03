@@ -8,6 +8,11 @@ function ContactsPage (){
 
     const KEY = getCookie("userKey");
 
+    if (!KEY){
+        window.location.href = '/login';
+        return;
+    }
+
     if (KEY.length > 10){
     return(
         <div className="container mainPageWrap">
