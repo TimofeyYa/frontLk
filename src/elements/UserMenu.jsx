@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import setCookie from "../functions/setCookie";
+import HeaderLoader from "./loaders/HeaderLoader";
 
 function UserMenu(props){
     const [menuActive, setMenuActive] = React.useState(true);
@@ -27,7 +28,9 @@ function UserMenu(props){
             </div>
 
             <div className="unselectable header__name" onClick={showMenu}>
-                <p>{typeof(props.name) == "string" && props.name}</p>
+                <p>{ typeof(props.name) == "string" &&
+                    props.name.length > 0 ? props.name : <HeaderLoader/>
+                }</p>
             </div>
 
             {props.menuActive &&

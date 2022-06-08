@@ -8,7 +8,7 @@ function BigGrafic(props){
     React.useEffect(()=>{
         getComponents(setUrl,"test")
     },[])
-    console.log("url: ", url);
+    
     return(
         <div className="whiteBlock pages__graficsBigBlock">
            {url && <iframe src={url && `${url}&from=${props.start}&to=${props.end}`} width="100%" height="100%" frameBorder="0"></iframe>} 

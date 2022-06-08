@@ -503,3 +503,30 @@ footer{
 .pages__infoDateItem:not(:last-child){
     margin-bottom: 3px;
 }
+
+
+/* Медиа */
+
+@media screen and (max-width: 1100px){
+    h2{
+        font-size: 17px;
+    }
+    h4{
+        font-size: 12px;
+    }
+    .pages__infoYearItem--active{
+        font-size: 26px;
+    }
+    .pages__infoYearItem{
+        font-size: 18px;
+    }
+    .pages__infoYearSelect{
+        padding: 0 12px;
+    }
+    .pages__infoDateName p{
+        font-size: 14px;
+    }
+    .pages__infoDateItem{
+        height: 30px;
+    }
+}

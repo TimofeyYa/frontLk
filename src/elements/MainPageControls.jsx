@@ -1,6 +1,7 @@
 import React from "react";
 import getUserInfo from "../functions/getUserInfo";
 import DateController from "./subElements/DateController";
+import NameLoader from "./loaders/NameLoader";
 
 function MainPageControls(props){
     const [name, setName] = React.useState("");
@@ -25,7 +26,7 @@ function MainPageControls(props){
                         <h4>Заказчик</h4>
                     </div>
                     <div className="pages__infoTxtVariant">
-                        <h2>{name}</h2>
+                        <h2>{name.length > 0 ? name :  <NameLoader/>  }</h2>
                     </div>
                 </div>
             </div>
