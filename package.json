@@ -18,9 +18,12 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=8484 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:cypress":"start-server-and-test start 8484 cypress:run",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -40,5 +43,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "cypress": "^10.0.3",
+    "start-server-and-test": "^1.14.0"
   }
 }
