@@ -19,9 +19,10 @@
   },
   "scripts": {
     "start": "PORT=8484 react-scripts start",
+    "start:dev": "PORT=8000 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "test:cypress":"start-server-and-test start 8484 cypress:run",
+    "test:cypress": "start-server-and-test start 8484 cypress:run",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
     "eject": "react-scripts eject"
@@ -46,6 +47,7 @@
   },
   "devDependencies": {
     "cypress": "^10.0.3",
+    "dotenv": "^16.0.1",
     "start-server-and-test": "^1.14.0"
   }
 }

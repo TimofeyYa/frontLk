@@ -14,7 +14,6 @@ function App() {
     isAuth();
   }, [])
 
-
   return (
     <BrowserRouter>
       <Routes>
