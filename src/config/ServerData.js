@@ -6,7 +6,6 @@ class ServerData{
     getHost(){
         return this.host;
     }
-    
 }
 
 export default ServerData;
