@@ -1,6 +1,7 @@
 import axios from "axios";
 import getCookie from "./getCookie";
 import setCookie from "./setCookie";
+import ServerData from "../config/ServerData";
 
 const isAuth = async ()=> {
 
@@ -8,7 +9,7 @@ const isAuth = async ()=> {
     const token = getCookie("userKey");
 
     if (token){
-        await axios.get(`http://45.133.218.11:5501/user/isAuth?token=${token}`)
+        await axios.get(`${new ServerData().getHost()}/user/isAuth?token=${token}`)
         .then(function (response) {
             const data = response.data;
             if (data.status == 0){

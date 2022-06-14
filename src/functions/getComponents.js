@@ -1,5 +1,6 @@
 import axios from "axios";
 import getCookie from "./getCookie";
+import ServerData from "../config/ServerData";
 
 function getComponents(setFunc = () =>{},name = null){
     let url;
@@ -7,9 +8,9 @@ function getComponents(setFunc = () =>{},name = null){
 
     if (token){
         if (name == null){
-            url=`http://45.133.218.11:5501/components/get?token=${token}`;
+            url=`${new ServerData().getHost()}/components/get?token=${token}`;
         }else{
-            url=`http://45.133.218.11:5501/components/get?name=${name}&token=${token}`;
+            url=`${new ServerData().getHost()}/components/get?name=${name}&token=${token}`;
         }
         return axios.get(url).then(response => {
             if (name == null){

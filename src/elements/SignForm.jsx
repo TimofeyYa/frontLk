@@ -3,6 +3,7 @@ import classNames from "classnames";
 import axios from "axios";
 import setBrootDefender from "../functions/setBrootDefender";
 import brootDefender from "../functions/brootDefender";
+import ServerData from "../config/ServerData";
 
 function SignForm(){
     const [loginActive, setLoginActive] = React.useState(false);
@@ -104,7 +105,7 @@ function SignForm(){
                 return;
             }
 
-            axios.get(`http://45.133.218.11:5501/user/login?login=${loginValue}&password=${passValue}`)
+            axios.get(`${new ServerData().getHost()}/user/login?login=${loginValue}&password=${passValue}`)
             .then(function (response) {
                 if (response.status == '200'){
                     let data = response.data;

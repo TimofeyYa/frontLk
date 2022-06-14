@@ -536,8 +536,9 @@ footer{
     }
 }
 
-@media screen and (max-width: 400px){
-    .images-container{
-        height: 300px !important;
-    }
+.layout-content.status.status-index .page-status {
+    margin-bottom: 35px;
+}
+.layout-content.status .masthead-container .masthead{
+    margin-bottom: 35px;
 }
