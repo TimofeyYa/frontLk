@@ -1,6 +1,6 @@
 class ServerData{
     constructor(){
-        this.host = 'http://45.133.218.11:5501';
+        this.host = 'http://localhost:5501';
     }
 
     getHost(){
