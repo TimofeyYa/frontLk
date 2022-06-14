@@ -1,6 +1,6 @@
 import axios from "axios";
 import getCookie from "./getCookie";
-import ServerData from "../config/ServerData";
+import ServerData from "../config/ServerData.config";
 
 function getUserInfo(setFunc = () =>{},type = null){
     let url;

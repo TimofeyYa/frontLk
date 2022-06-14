@@ -1,1 +1,1 @@
-/src/config merge=ours
+*.config.js merge=ours

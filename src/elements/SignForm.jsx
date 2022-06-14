@@ -3,7 +3,7 @@ import classNames from "classnames";
 import axios from "axios";
 import setBrootDefender from "../functions/setBrootDefender";
 import brootDefender from "../functions/brootDefender";
-import ServerData from "../config/ServerData";
+import ServerData from "../config/ServerData.config";
 
 function SignForm(){
     const [loginActive, setLoginActive] = React.useState(false);

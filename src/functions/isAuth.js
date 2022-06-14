@@ -1,7 +1,7 @@
 import axios from "axios";
 import getCookie from "./getCookie";
 import setCookie from "./setCookie";
-import ServerData from "../config/ServerData";
+import ServerData from "../config/ServerData.config";
 
 const isAuth = async ()=> {
 
