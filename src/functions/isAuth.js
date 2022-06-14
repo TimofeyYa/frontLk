@@ -8,7 +8,7 @@ const isAuth = async ()=> {
     const token = getCookie("userKey");
 
     if (token){
-        await axios.get(`http://localhost:5501/user/isAuth?token=${token}`)
+        await axios.get(`http://45.133.218.11:5501/user/isAuth?token=${token}`)
         .then(function (response) {
             const data = response.data;
             if (data.status == 0){

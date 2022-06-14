@@ -7,9 +7,9 @@ function getComponents(setFunc = () =>{},name = null){
 
     if (token){
         if (name == null){
-            url=`http://localhost:5501/components/get?token=${token}`;
+            url=`http://45.133.218.11:5501/components/get?token=${token}`;
         }else{
-            url=`http://localhost:5501/components/get?name=${name}&token=${token}`;
+            url=`http://45.133.218.11:5501/components/get?name=${name}&token=${token}`;
         }
         return axios.get(url).then(response => {
             if (name == null){

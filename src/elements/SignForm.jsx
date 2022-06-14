@@ -1,6 +1,8 @@
 import React from "react";
 import classNames from "classnames";
 import axios from "axios";
+import setBrootDefender from "../functions/setBrootDefender";
+import brootDefender from "../functions/brootDefender";
 
 function SignForm(){
     const [loginActive, setLoginActive] = React.useState(false);
@@ -12,6 +14,44 @@ function SignForm(){
     const [loginError, setLoginError] = React.useState(false);
     const [passworError, setPasswordError] = React.useState(false);
     const [message, setMessage] = React.useState("");
+
+    const [loser, setLoser] = React.useState(0);
+    const [lock, setLock] = React.useState(false);
+    const [lockDate, setLockDate] = React.useState(0);
+
+    const brootDefFunc = () =>{
+        setLoser(loser + 1);
+        if (loser > 5){
+            setLock(true);
+            setLoginValue('');
+            setPassValue('');
+            setBrootDefender(setLockDate);
+        }
+    }
+
+    React.useEffect(()=>{
+        brootDefender(setLock, setLockDate);
+    }, [])
+
+    React.useEffect(()=>{  
+        if (lockDate){
+            let lockIntId = setInterval(()=>{
+                if (new Date().getTime() < lockDate){
+                    setMessage(`Блокировка ${Math.floor((lockDate - new Date().getTime()) / 1000) + 1} секунд(-ы)`);
+                }else{
+                    setLoginError(false);
+                    setPasswordError(false);
+                    setMessage('')
+                    setLock(false);
+                    setLockDate(0);
+                    setLoser(0);
+                    clearInterval(lockIntId);
+                }
+            }, 1000)
+        }
+    
+    }, [lockDate])
+
 
     function setLogin (bool){
         if (loginValue.length > 0){
@@ -64,7 +104,7 @@ function SignForm(){
                 return;
             }
 
-            axios.get(`http://localhost:5501/user/login?login=${loginValue}&password=${passValue}`)
+            axios.get(`http://45.133.218.11:5501/user/login?login=${loginValue}&password=${passValue}`)
             .then(function (response) {
                 if (response.status == '200'){
                     let data = response.data;
@@ -73,6 +113,7 @@ function SignForm(){
                         window.location.href = '/';
                     }else{
                         setAllErrors("Не верный логин или пароль");
+                        brootDefFunc();
                     }
                 }else{
                     setAllErrors("Ошибка подключения к серверу");
@@ -100,7 +141,7 @@ function SignForm(){
                             <path fillRule="evenodd" clipRule="evenodd" d="M21.374 18.5137L21.5456 30.8978L33.0911 40.5637H47.1085L21.374 18.5137Z" fill="#FF512A"/>
                         </svg>                                
                     </div>
-                    <form action="">
+                    <form action="" className={classNames({"elem-noactive": lock})}>
                         <div className={classNames('inputWrap', {'inputWrap--active': loginActive, "inputWrap--alert":loginError})}>
                             <p className="inpTxt">Логин</p>
                             <input onChange={event=>setLoginValue(event.target.value)} value={loginValue} onFocus={()=>setLogin(true)} onBlur={()=>setLogin(false)} type="text"/>
@@ -110,7 +151,7 @@ function SignForm(){
                             <input onChange={event=>setPassValue(event.target.value)} value={passValue} onFocus={()=>setPassword(true)} onBlur={()=>setPassword(false)} type="password"/>
                         </div>
                     </form>
-                    <div className="signform__formBtn">
+                    <div className={classNames('signform__formBtn', {'elem-noactive': lock})}>
                         <button onClick={sendMessage} className="mainBtn orangeBtn">
                             Войти
                         </button>

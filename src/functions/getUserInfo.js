@@ -7,9 +7,9 @@ function getUserInfo(setFunc = () =>{},type = null){
 
     if (token){
         if (type == null){
-            url=`http://localhost:5501/user/userInfo?token=${token}`;
+            url=`http://45.133.218.11:5501/user/userInfo?token=${token}`;
         }else{
-            url=`http://localhost:5501/user/userInfo?type=${type}&token=${token}`;
+            url=`http://45.133.218.11:5501/user/userInfo?type=${type}&token=${token}`;
         }
         return axios.get(url).then(response => {
             if (type == null){

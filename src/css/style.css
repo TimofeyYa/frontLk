@@ -504,6 +504,11 @@ footer{
     margin-bottom: 3px;
 }
 
+.elem-noactive{
+    opacity: 0.8;
+    pointer-events: none;
+}
+
 
 /* Медиа */
 
@@ -528,5 +533,11 @@ footer{
     }
     .pages__infoDateItem{
         height: 30px;
+    }
+}
+
+@media screen and (max-width: 400px){
+    .images-container{
+        height: 300px !important;
     }
 }
