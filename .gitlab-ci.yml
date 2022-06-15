@@ -52,4 +52,4 @@ start:
   tags: 
     - frontbuilder
   script:
-    pm2 npm start --name 'app' --spa
+    pm2 start npm --name "app name" -- start
