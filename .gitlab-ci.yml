@@ -12,10 +12,10 @@ downloud:
     - frontbuilder
   script:
     - sudo curl -sL https://deb.nodesource.com/setup_16.x | sudo bash -
-    - sudo apt install nodejs
+    - sudo apt install nodejs -y
     - npm -v
     - node -v
-    - sudo apt-get install xvfb
+    - sudo apt-get install xvfb  -y
 
 install:
   stage: downloud
