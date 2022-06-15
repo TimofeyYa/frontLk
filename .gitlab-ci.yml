@@ -1,5 +1,52 @@
 stages:
-  -downloud
-  -test
-  -build
-  -start
+  - downloud
+  - test app
+  - build
+  - test build
+  - start
+
+
+downloud:
+  stage: downloud
+  tags:
+    - frontbuilder
+  script:
+    - sudo curl -sL https://deb.nodesource.com/setup_16.x | sudo bash -
+    - sudo apt install nodejs
+    - npm -v
+    - node -v
+
+install:
+  stage: downloud
+  tags:
+    - frontbuilder
+  script: 
+    - sudo npm install pm2@latest -g
+    - npm install
+  artifacts:
+        paths:
+          - node_modules/ 
+
+test:
+  stage: test
+  tags:
+    - frontbuilder
+  script: 
+    - npm run test:cypress
+
+build:
+  stage: downloud
+  tags:
+    - frontbuilder
+  script: 
+    - npm run build
+  artifacts:
+        paths:
+          - build/ 
+
+start:
+  stage: start
+  tags: 
+    - frontbuilder
+  script:
+    - serve -s build 8000
