@@ -52,4 +52,4 @@ start:
   tags: 
     - frontbuilder
   script:
-    pm2 serve build 8000 --name "my-react-app"
+    pm2 serve build/ 8000 --name "my-react-app" --spa
