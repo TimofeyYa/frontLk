@@ -15,6 +15,7 @@ downloud:
     - sudo apt install nodejs
     - npm -v
     - node -v
+    - sudo apt-get install xvfb
 
 install:
   stage: downloud
@@ -49,4 +50,4 @@ start:
   tags: 
     - frontbuilder
   script:
-    - serve -s build 8000
+    pm2 serve -s build/ 8000 --name "my-react-app"
