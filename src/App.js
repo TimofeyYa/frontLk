@@ -14,7 +14,6 @@ function App() {
     isAuth();
   }, [])
 
-  console.log(process.env);
   return (
     <BrowserRouter>
       <Routes>
