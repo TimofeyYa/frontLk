@@ -29,6 +29,12 @@ install:
         paths:
           - node_modules/ 
 
+test:
+  stage: test app
+  tags:
+    - frontbuilder
+  script: 
+    - npm run test:cypress
 
 build:
   stage: build
@@ -40,10 +46,17 @@ build:
         paths:
           - build/ 
 
+stop:
+  stage: stop
+  tags:
+    - frontbuilder
+  script: 
+    - pm2 delete "my-react-app"
+  
 
 start:
   stage: start
   tags: 
     - frontbuilder
   script:
-    pm2 start npm --name "app name" -- start
+    pm2 serve build 8000 --name "my-react-app"
