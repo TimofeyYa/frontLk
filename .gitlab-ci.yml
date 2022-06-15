@@ -28,14 +28,14 @@ install:
           - node_modules/ 
 
 test:
-  stage: test
+  stage: test app
   tags:
     - frontbuilder
   script: 
     - npm run test:cypress
 
 build:
-  stage: downloud
+  stage: build
   tags:
     - frontbuilder
   script: 
