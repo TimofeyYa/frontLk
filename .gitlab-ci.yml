@@ -46,13 +46,10 @@ build:
         paths:
           - build/ 
 
-stop:
-  stage: stop
-  tags: 
 
 start:
   stage: start
   tags: 
     - frontbuilder
   script:
-    pm2 serve -s build 8000 --name "my-react-app"
+    pm2 serve build 8000 --name "my-react-app"
