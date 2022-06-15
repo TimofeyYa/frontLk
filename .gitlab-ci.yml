@@ -10,7 +10,7 @@ stages:
 downloud:
   stage: downloud
   tags:
-    - frontbuilder
+    - builder
   script:
     - sudo curl -sL https://deb.nodesource.com/setup_16.x | sudo bash -
     - sudo apt install nodejs -y
@@ -21,7 +21,7 @@ downloud:
 install:
   stage: downloud
   tags:
-    - frontbuilder
+    - builder
   script: 
     - sudo npm install pm2@latest -g
     - npm install
@@ -32,14 +32,14 @@ install:
 test:
   stage: test app
   tags:
-    - frontbuilder
+    - builder
   script: 
     - npm run test:cypress
 
 build:
   stage: build
   tags:
-    - frontbuilder
+    - builder
   script: 
     - npm run build
   artifacts:
@@ -50,6 +50,6 @@ build:
 start:
   stage: start
   tags: 
-    - frontbuilder
+    - builder
   script:
     pm2 serve build/ 8000 --name "my-react-app" --spa
