@@ -29,12 +29,6 @@ install:
         paths:
           - node_modules/ 
 
-test:
-  stage: test app
-  tags:
-    - frontbuilder
-  script: 
-    - npm run test:cypress
 
 build:
   stage: build
