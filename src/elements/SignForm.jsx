@@ -104,9 +104,10 @@ function SignForm(){
                 setErrorPassword(true, "Поле 'Пароль' заполненно не верно");
                 return;
             }
-
+            setLock(true);
             axios.get(`${new ServerData().getHost()}/user/login?login=${loginValue}&password=${passValue}`)
             .then(function (response) {
+                setLock(false);
                 if (response.status == '200'){
                     let data = response.data;
                     if (data.status == 1){

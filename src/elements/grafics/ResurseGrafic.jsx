@@ -1,14 +1,21 @@
+import axios from "axios";
 import React from "react";
 import getComponents from "../../functions/getComponents";
 
 
 function ResurseGrafic(props){
-    const [url,setUrl] = React.useState(false);
-
-    React.useEffect(()=>{
-        getComponents(setUrl,"test")
-    },[])
+    const [data, setData] = React.useState({
+        "claster": [0,0,0,0],
+        "power":[0,0,0,0],
+        "usePower":[0,0,0,0]
+    });
     
+
+    // Нужно дописать запросы обращения к БД
+    React.useEffect(()=>{
+        
+    }, []);
+
     return(
         <div className="pages__graficsBlockWrap">
             <div className="pages__graficsBlockTitle">
@@ -19,7 +26,7 @@ function ResurseGrafic(props){
                     <h3>Показатели кластера без учета резервирования</h3>
                     <div className="pages__graficsResurseBlockSec">
                         <div className="pages__graficsResurseBlockItem">
-                            <iframe src="http://45.133.218.11:3000/d-solo/zHe7Ii3nz/vdi-bograda144?orgId=1&from=1648746000000&to=1651337999000&theme=light&panelId=9" width="130" height="80" frameborder="0"></iframe>
+                            <h4>{data["claster"][0]}</h4>
                             <h5>Максимум Запущенных ВМ, шт</h5>
                         </div>
                         <div className="pages__graficsResurseBlockItem">

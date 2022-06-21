@@ -12,7 +12,7 @@ function BigGrafic(props){
     return(
         <div className="pages__graficsBlockWrap">
             <div className="whiteBlock pages__graficsBlock pages__graficsBigBlock">
-            {url && <iframe title="bigGraf" src={url && `${url}&from=${props.start}&to=${props.end}`} width="100%" height="100%" frameBorder="0"></iframe>} 
+                {url && <iframe title="bigGraf" src={url && `${url}&from=${props.start}&to=${props.end}`} width="100%" height="100%" frameBorder="0"></iframe>} 
             </div>
         </div>
     )
