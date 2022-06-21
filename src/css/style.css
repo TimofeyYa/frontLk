@@ -542,3 +542,58 @@ footer{
 .layout-content.status .masthead-container .masthead{
     margin-bottom: 35px;
 }
+
+/* Grafics */
+
+.pages__graficsDetailBlock{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 15px;
+}
+
+.pages__graficsBlockWrap:not(:last-child){
+    margin-bottom: 50px;
+}
+
+.pages__graficsDetailBlockItem{
+    padding: 10px;
+  
+}
+
+.pages__graficsBlockTitle{
+    margin-bottom: 20px;
+}
+
+.pages__graficsResurseBlockSec{
+    display: flex;
+    justify-content: space-between;
+    grid-column-gap: 20px;
+    padding-top: 5px;
+}
+
+.pages__graficsResurseBlockSecWrap{
+    padding: 25px 15px;
+}
+
+.pages__graficsResurseBlock .pages__graficsResurseBlockSecWrap:not(:last-child){
+    margin-bottom: 20px;
+}
+.pages__graficsResurseBlockItem{
+    overflow: hidden;
+    max-width: 150px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pages__graficsBlockCostWrap{
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    grid-column-gap: 20px;
+}
+.pages__graficsTableBlock{
+    padding: 10px;
+}
+
