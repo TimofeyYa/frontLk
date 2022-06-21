@@ -1,12 +1,18 @@
 import React from "react";
-import {Navigate} from 'react-router-dom';
+import {Navigate, useSearchParams} from 'react-router-dom';
 import getCookie from '../functions/getCookie'
 import PageNav from "../elements/PageNav";
 import MainPageControls from "../elements/MainPageControls";
 import MainPageGrafics from "../elements/MainPageGrafics";
 
 
-function MainPage (){    
+function MainPage (){ 
+    
+    // Работа с параметрами для фильтрации
+    const [searchParams, setSearchParams] = useSearchParams();
+    const [route, setRoute] = React.useState(searchParams.get("route"));
+
+    // Работа с проверкой на наличее ключа
     const KEY = getCookie("userKey");
     
     const [date,setDate] = React.useState(new Date());
@@ -25,9 +31,9 @@ function MainPage (){
                 <div className="pages__struct">
                     <PageNav/>
                     <div className="pages__content">
-                        <MainPageControls date={date} setDate={setDate}/>
+                        <MainPageControls route={route}  date={date} setDate={setDate}/>
     
-                        <MainPageGrafics date={date}/>
+                        <MainPageGrafics route={route}  date={date}/>
                     </div>
                 </div>
             </div>

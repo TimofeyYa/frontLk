@@ -236,8 +236,33 @@ h6{
     display: none;
 }
 
+.pages__navItemSub{
+    padding-left: 50px;
+}
+
+.pages__navItemSub .lines{
+    width: 22px;
+}
+
+.pages__navItemSub a{
+    font-size: 18px;
+    opacity: 0.7;
+
+}
+
+.pages__navItem--onlyLine .lines{
+    display: block;
+}
 .pages__navItem--selected .lines{
     display: block;
+}
+
+.pages__navItem--selected a{
+    color: var(--blue-color)
+}
+
+.pages__navItem--selected .pages__navItemSubLink{
+    opacity: 1;
 }
 
 .pages__nav ul{
