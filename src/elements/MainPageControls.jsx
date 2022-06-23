@@ -59,7 +59,7 @@ function MainPageControls(props){
                 </div>
             </div>
 
-            <DateController date={props.date} setDate={props.setDate}/>
+            <DateController fullYear={props.fullYear} setFullYear={props.setFullYear} date={props.date} setDate={props.setDate}/>
         </section>
     )
 }

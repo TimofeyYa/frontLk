@@ -21,15 +21,22 @@ function DateController(props){
 
     React.useEffect(()=>{
         edit = true;
-    }, [yearSelect, monthSelect])
+    }, [yearSelect, monthSelect, props.fullYear])
 
     const allMonth = ['Январь', "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"]
 
     function selectMonth(num){
         const dateMonth = [0,0,0,0,0,0,0,0,0,0,0,0];
-        setMonthSelect(num)
-        dateMonth[num] = 1;
-        setMonth(dateMonth);
+
+        if (month[num] === 1){
+            setMonth(dateMonth);
+            props.setFullYear(true);
+        }else{
+            props.setFullYear(false);
+            setMonthSelect(num)
+            dateMonth[num] = 1;
+            setMonth(dateMonth);
+        }
     }
 
     function menuControl(){
