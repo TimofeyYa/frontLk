@@ -1,15 +1,16 @@
 import React from "react";
 import NavItem from "./subElements/NavItem";
 
+
 function PageNav(){
     const dataLinks = [
-        ["Бюджет", "/", ["Общая", "Реестр", "УЗЗ"]],
-        ["Контакты", "/contacts"],
-    ]
+        ["Бюджет", "/", [["Общая", ["Кластер: SRV","Кластер: VDI"]], ["Реестр"], ["УЗЗ"]]],
+        ["Контакты", "/contacts"]
+   ]
 
     
     return(
-        <nav className="pages__nav">
+        <nav className="pages__nav pages__nav--active">
             <ul>    
                 {dataLinks &&
                  dataLinks.map((item, index)=> {

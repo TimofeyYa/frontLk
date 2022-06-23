@@ -36,6 +36,10 @@ body{
     padding: 0 20px;
 }
 
+.hidden{
+    display: none;
+}
+
 header{
     position: fixed;
     top: 0;
@@ -88,6 +92,16 @@ h6{
     line-height: 150%;
     color: #000000;
 }
+
+select::-ms-expand {
+    display: none;
+}
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+  }
 
 .whiteBlock{
     box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.08);
@@ -219,6 +233,10 @@ h6{
     grid-column-gap: 10px;
 }
 
+.pages__nav--active ul{
+    position: fixed;
+}
+
 .pages__nav a{
     font-weight: 400;
     font-size: 20px;
@@ -240,14 +258,25 @@ h6{
     padding-left: 50px;
 }
 
+.pages__navItemSubSub{
+    padding-left: 70px;
+}
+
 .pages__navItemSub .lines{
     width: 22px;
 }
 
 .pages__navItemSub a{
-    font-size: 18px;
-    opacity: 0.7;
+    font-size: 16px;
+}
 
+.pages__navItemSubSub a{
+    font-size: 14px;
+    opacity: 0.3;
+}
+
+.pages__navItemSub--selected a{
+    opacity: 1;
 }
 
 .pages__navItem--onlyLine .lines{
@@ -263,6 +292,11 @@ h6{
 
 .pages__navItem--selected .pages__navItemSubLink{
     opacity: 1;
+}
+
+.pages__navItemSubLink svg{
+    margin-left: 5px;
+    margin-bottom: 3px;
 }
 
 .pages__nav ul{
@@ -620,5 +654,14 @@ footer{
 }
 .pages__graficsTableBlock{
     padding: 10px;
+}
+.pages__graficsResurseBlockItem h4{
+    font-size: 25px;
+    padding: 20px 5px 5px 5px;
+}
+
+.pages__graficsResurseBlockItem h5{
+    font-size: 12px;
+    max-width: 90%;
 }
 

@@ -1,0 +1,10 @@
+{
+    "Кластер: VDI":{
+        "clasterID": 1,
+        "name": "VDI-Bograda144"
+    },
+    "Кластер: SRV":{
+        "clasterID": 2,
+        "name": "SRV-Bograda144"
+    }
+}

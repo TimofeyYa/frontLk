@@ -4,6 +4,8 @@ import CostGrafic from "./grafics/CostGrafic";
 import DetailGrafic from "./grafics/DetailGrafic";
 import ResurseGrafic from "./grafics/ResurseGrafic";
 
+import { useSearchParams } from "react-router-dom";
+
 function MainPageGrafics(props){
     const [endTime, setEndTime] = React.useState(new Date(`${props.date.getFullYear()}-${props.date.getMonth() + 2}-01`));
     const [startTime, setStartTime] = React.useState(new Date(`${props.date.getFullYear()}-${props.date.getMonth() + 1}-01`));
@@ -17,13 +19,17 @@ function MainPageGrafics(props){
         setStartTime(new Date(`${props.date.getFullYear()}-${props.date.getMonth()+1}-01`));
     }, [props.date])
 
+    // для разграничения по кластерам
+    let [searchParams, setSearchParams] = useSearchParams();
+    let claster = searchParams.get("claster") || false;
+
 
     return(
         <section className="pages__grafics">
             <BigGrafic start={startTime.getTime()} end={endTime.getTime() - 1000*60*60*24}/>    
-            <DetailGrafic start={startTime.getTime()} end={endTime.getTime() - 1000*60*60*24}/>
-            <ResurseGrafic start={startTime.getTime()} end={endTime.getTime() - 1000*60*60*24}/>   
-            <CostGrafic start={startTime.getTime()} end={endTime.getTime() - 1000*60*60*24}/>        
+            {claster && <DetailGrafic start={startTime.getTime()} end={endTime.getTime() - 1000*60*60*24}/>}
+            {claster && <ResurseGrafic token={props.token} start={startTime.getTime()} end={endTime.getTime() - 1000*60*60*24}/>   }
+            {claster && <CostGrafic start={startTime.getTime()} end={endTime.getTime() - 1000*60*60*24}/>        }
         </section>
     )
 }

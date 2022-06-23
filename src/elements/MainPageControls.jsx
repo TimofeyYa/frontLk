@@ -3,12 +3,19 @@ import getUserInfo from "../functions/getUserInfo";
 import DateController from "./subElements/DateController";
 import NameLoader from "./loaders/NameLoader";
 
+
+
 function MainPageControls(props){
     const [name, setName] = React.useState("");
 
     React.useEffect(()=>{
         const data = getUserInfo(setName, "name");
     }, []);
+
+
+    React.useEffect(()=>{
+  
+    },[]);
 
     return(
         <section className="pages__info">

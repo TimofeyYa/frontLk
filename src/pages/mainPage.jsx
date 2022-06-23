@@ -33,7 +33,7 @@ function MainPage (){
                     <div className="pages__content">
                         <MainPageControls route={route}  date={date} setDate={setDate}/>
     
-                        <MainPageGrafics route={route}  date={date}/>
+                        <MainPageGrafics token={KEY} route={route}  date={date}/>
                     </div>
                 </div>
             </div>
