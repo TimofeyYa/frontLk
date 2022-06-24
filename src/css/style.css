@@ -416,6 +416,10 @@ select {
     height: 500px;
 }
 
+.canvas__wrap{
+    height: 100%;
+    width: 100%;
+}
 .pages__infoSelect .pages__infoPic{
     background-color: var(--softBlue-color);
     transition: 0.3s;
