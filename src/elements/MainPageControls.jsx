@@ -2,19 +2,28 @@ import React from "react";
 import getUserInfo from "../functions/getUserInfo";
 import DateController from "./subElements/DateController";
 import NameLoader from "./loaders/NameLoader";
+import axios from "axios";
+import ServerData from "../config/ServerData.config";
 
 
 
 function MainPageControls(props){
     const [name, setName] = React.useState("");
-
+    
     React.useEffect(()=>{
         const data = getUserInfo(setName, "name");
     }, []);
 
-
+    
+    const [sum, setSum] = React.useState(0);
     React.useEffect(()=>{
-  
+        axios.get(`http://localhost:5501/params/cost/getBudget?token=${props.token}`)
+        .then(data=>{
+            console.log(data)
+            setSum(data.data.data[0].sum);
+        }).catch(e=>{
+            console.log(e);
+        })
     },[]);
 
     return(
@@ -54,7 +63,7 @@ function MainPageControls(props){
                         <h4>Сумма по заказчику</h4>
                     </div>
                     <div className="pages__infoTxtVariant">
-                        <h2>3 400 000 ₽</h2>
+                        <h2>{sum} ₽</h2>
                     </div>
                 </div>
             </div>

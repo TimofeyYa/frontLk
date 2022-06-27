@@ -620,7 +620,7 @@ footer{
 
 .pages__graficsDetailBlockItem{
     padding: 10px;
-  
+    min-height: 173px;
 }
 
 .pages__graficsBlockTitle{
@@ -653,11 +653,20 @@ footer{
 
 .pages__graficsBlockCostWrap{
     display: grid;
-    grid-template-columns: 1fr 350px;
-    grid-column-gap: 20px;
+    grid-template-columns: 1fr;
+    grid-row-gap: 20px;
 }
 .pages__graficsTableBlock{
     padding: 10px;
+    min-height: 423px;
+}
+
+.pages__graficsPieBlock{
+    min-height: 403px;
+}
+
+.pages__graficsSimpleBlock{
+    min-height: 223px;
 }
 .pages__graficsResurseBlockItem h4{
     font-size: 25px;

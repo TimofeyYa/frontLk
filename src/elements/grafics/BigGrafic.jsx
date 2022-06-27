@@ -1,14 +1,31 @@
-import axios from "axios";
 import React from "react";
-
-
+import { useSearchParams } from "react-router-dom";
+import getComponents from "../../functions/getComponents";
+import clasterData from "../../clasterData.json";
 
 function BigGrafic(props){
   
+    const [url,setUrl] = React.useState(false);
+
+    let [searchParams, setSearchParams] = useSearchParams();
+    let route = searchParams.get("route");
+
+    React.useEffect(()=>{
+        setUrl(false)
+        if (route != null){
+            getComponents(setUrl,`bigGraf-${route}`)
+        }else{
+            getComponents(setUrl,"bigGraf-budget")
+        }
+    }, [route])
+
     return(
         <div className="pages__graficsBlockWrap">
-            <iframe src="http://45.133.218.11:3000/d-solo/zHe7Ii3nz/platforma-obshchaia?orgId=1&from=1648529214823&to=1656305214823&theme=light&panelId=29" width="100%" height="400" frameborder="0"></iframe>
+            <div className="whiteBlock pages__graficsBlock pages__graficsBigBlock">
+                {url && <iframe title="bigGraf" src={url && `${url}&from=${props.start}&to=${props.end}`} width="100%" height="100%" frameBorder="0"></iframe>} 
+            </div>
         </div>
+
     )
 }
 

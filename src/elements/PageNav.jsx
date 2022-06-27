@@ -4,7 +4,8 @@ import NavItem from "./subElements/NavItem";
 
 function PageNav(){
     const dataLinks = [
-        ["Бюджет", "/", [["Общая", ["Кластер: SRV","Кластер: VDI"]], ["Реестр"], ["УЗЗ"]]],
+        ["Бюджет", "/", [["Общая", ["SRV-Bograda144","VDI-Bograda144", "Cluster-22a-1"]],
+        ["Реестр"], ["УЗЗ"]]],
         ["Контакты", "/contacts"]
    ]
 

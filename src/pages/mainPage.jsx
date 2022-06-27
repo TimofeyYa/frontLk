@@ -33,7 +33,7 @@ function MainPage (){
                 <div className="pages__struct">
                     <PageNav/>
                     <div className="pages__content">
-                        <MainPageControls fullYear={fullYear} setFullYear={setFullYear} route={route}  date={date} setDate={setDate}/>
+                        <MainPageControls token={KEY} fullYear={fullYear} setFullYear={setFullYear} route={route}  date={date} setDate={setDate}/>
     
                         <MainPageGrafics fullYear={fullYear} token={KEY} route={route}  date={date}/>
                     </div>

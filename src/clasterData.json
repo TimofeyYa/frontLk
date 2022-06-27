@@ -1,10 +1,14 @@
 {
-    "Кластер: VDI":{
-        "clasterID": 1,
+    "VDI-Bograda144":{
+        "clasterID": 2,
         "name": "VDI-Bograda144"
     },
-    "Кластер: SRV":{
-        "clasterID": 2,
+    "SRV-Bograda144":{
+        "clasterID": 1,
         "name": "SRV-Bograda144"
+    },
+    "Cluster-22a-1":{
+        "clasterID": 3,
+        "name": "Cluster-22a-1"
     }
 }

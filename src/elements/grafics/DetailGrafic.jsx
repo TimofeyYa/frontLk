@@ -1,31 +1,59 @@
 import React from "react";
 import getComponents from "../../functions/getComponents";
-
+import {useSearchParams} from 'react-router-dom'
+import clasterData from "../../clasterData.json";
 
 function DetailGrafic(props){
     const [url,setUrl] = React.useState(false);
 
     React.useEffect(()=>{
-        getComponents(setUrl,"test")
+        
     },[])
+
+    const [platformName, setPlatformName] = React.useState('');
     
+    let [searchParams, setSearchParams] = useSearchParams();
+    let claster = searchParams.get("claster");
+
+    const [urlVM, setUrlVm] = React.useState(false);
+    const [urlRam, setUrlRam] = React.useState(false);
+    const [urlChastot, setUrlChastot] = React.useState(false);
+    const [urlStorage, setUrlStorage] = React.useState(false);
+
+    React.useEffect(()=>{
+        setUrlVm(false);
+        setUrlRam(false);
+        setUrlChastot(false);
+        setUrlStorage(false);
+        if (claster != null){
+            setPlatformName(`Детализация показателей по платформе ${clasterData[claster]['name']}`)
+
+            getComponents(setUrlVm,`datail-vm-${clasterData[claster]['name']}`)
+            getComponents(setUrlRam,`datail-Ram-${clasterData[claster]['name']}`)
+            getComponents(setUrlChastot,`datail-Chastot-${clasterData[claster]['name']}`)
+            getComponents(setUrlStorage,`datail-storage-${clasterData[claster]['name']}`)
+        }else{
+            setPlatformName('Детализация показателей');
+        }
+    }, [claster])
+
     return(
         <div className="pages__graficsBlockWrap">
             <div className="pages__graficsBlockTitle">
-                <h2>Детализация показателей по платформе Cluster22a-1</h2>
+                <h2>{platformName}</h2>
             </div>
             <div className="pages__graficsBlock pages__graficsDetailBlock">
             <div className="whiteBlock pages__graficsDetailBlockItem">
-                    <iframe title="detail-1" src={`http://45.133.218.11:3000/d-solo/zHe7Ii3nz/vdi-bograda144?orgId=1&from=${props.start}&to=${props.end}&theme=light&panelId=25`} width="100%" height="200" frameborder="0"></iframe>
+                    {urlVM && <iframe title="bigGraf" src={urlVM && `${urlVM}&from=${props.start}&to=${props.end}`} width="100%" height="100%" frameBorder="0"></iframe>} 
             </div>
             <div className="whiteBlock pages__graficsDetailBlockItem">
-                    <iframe title="detail-2" src={`http://45.133.218.11:3000/d-solo/zHe7Ii3nz/vdi-bograda144?orgId=1&from=${props.start}&to=${props.end}&theme=light&panelId=30`} width="100%" height="200" frameborder="0"></iframe>
+                    {urlRam && <iframe title="bigGraf" src={urlRam && `${urlRam}&from=${props.start}&to=${props.end}`} width="100%" height="100%" frameBorder="0"></iframe>} 
             </div>
             <div className="whiteBlock pages__graficsDetailBlockItem">
-                    <iframe title="detail-3" src={`http://45.133.218.11:3000/d-solo/zHe7Ii3nz/vdi-bograda144?orgId=1&from=${props.start}&to=${props.end}&theme=light&panelId=32`} width="100%" height="200" frameborder="0"></iframe>
+                    {urlChastot && <iframe title="bigGraf" src={urlChastot && `${urlChastot}&from=${props.start}&to=${props.end}`} width="100%" height="100%" frameBorder="0"></iframe>} 
             </div>
             <div className="whiteBlock pages__graficsDetailBlockItem">
-                    <iframe title="detail-4" src={`http://45.133.218.11:3000/d-solo/zHe7Ii3nz/vdi-bograda144?orgId=1&from=${props.start}&to=${props.end}&theme=light&panelId=31`} width="100%" height="200" frameborder="0"></iframe>
+                    {urlStorage && <iframe title="bigGraf" src={urlStorage && `${urlStorage}&from=${props.start}&to=${props.end}`} width="100%" height="100%" frameBorder="0"></iframe>} 
             </div>
             </div>
         </div>
