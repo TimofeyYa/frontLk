@@ -1,121 +1,37 @@
+import axios from "axios";
 import React from "react";
 import getComponents from "../../functions/getComponents";
+import BarChar from "../canvas/BarChar";
 
 
 function BigGrafic(props){
-
-    // Работа с canvas
-    const canv = React.useRef(null);
-    const canvasWrap =  React.useRef(null);
-    
-    function createCanvas(numbers,titles, gap){
-        const holst =  canv.current;
-        holst.width = canvasWrap.current.clientWidth;
-        holst.height = canvasWrap.current.clientHeight;
-
-        if (typeof(numbers) != 'object') return;
-
-        let canvas = holst.getContext('2d');
-        // Создаём разметку
-        createSectors(holst,canvas);
-
-        // Рисуем линии деления
-        const maxNam = Math.max(...numbers);
-        const countLines = Math.round(holst.height / 50)
-        let delenie = Math.ceil(((maxNam  * 1.6) / countLines));
-        let delitel = Math.pow(10, delenie.toString().length - 1)
-        delenie = Math.round(delenie / delitel) * delitel;
-        createLines(holst,canvas, delenie, countLines);
+    const mounth = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"]
+    const [value, setValue] = React.useState([]);
+    const [setTitles, setSetTitles] = React.useState([]);
 
 
-        // Рисуем блоки
-        createRect(holst,canvas,numbers, delenie, titles, gap)
-    }
-
-    function createSectors(holst, canvas){
-        canvas.beginPath();
-        canvas.lineWidth = 1;
-        canvas.strokeStyle = 'black';
-        canvas.moveTo(80, 0);
-        canvas.lineTo(80, holst.height - 20);
-        canvas.stroke();
-        canvas.beginPath();
-        canvas.lineWidth = 1;
-        canvas.strokeStyle = 'black';
-        canvas.moveTo(80, holst.height - 20);
-        canvas.lineTo(holst.width - 20, holst.height - 20);
-        canvas.stroke();
-
-        canvas.fillStyle = "#000";
-        canvas.strokeStyle = "#000";
-        canvas.font = "normal 17px Arial";
-        canvas.fillText("0", 60, holst.height - 15);
-    }
-
-    function createLines(holst, canvas, delenie, countLines){
-        for (let i = 1; i <= countLines; i++){
-            let num = delenie * i;
-
-            canvas.fillStyle = "#000";
-            canvas.strokeStyle = "#000";
-            canvas.font = "normal 13px Arial";
-            canvas.fillText(`${num}`, 70 - 7*num.toString().length, holst.height - 20 - 50 * i + 5);
-
-            canvas.beginPath();
-            canvas.lineWidth = 1;
-            canvas.strokeStyle = 'gray';
-            canvas.moveTo(80, holst.height - 20 - 50 * i);
-            canvas.lineTo(holst.width - 20, holst.height - 20 - 50 * i);
-            canvas.stroke();
-        }
-    }
-
-    function createRect(holst, canvas, nambers, delenie, titles, gap){
-        const step = delenie/50;
-
-        let namElem = 0;
-        let addGap = 0;
-        for (let value of nambers){
-            let sdvig = 1;
-            let grafValue = 0
-            const rectWith = (holst.width - 100 - gap*2) / nambers.length ;
-
-            canvas.fillStyle = '#1F79DF';
-            while (grafValue < value){
-                grafValue+=step;
-                canvas.fillRect((80 + gap) + (rectWith *namElem ) + addGap * gap, holst.height - 21 - sdvig, rectWith - addGap * gap, 1);
-                sdvig++;
-            }
-
-            canvas.fillStyle = "#000";
-            canvas.strokeStyle = "#000";
-            canvas.font = "normal 15px Arial";
-            canvas.fillText(`${titles[namElem]} - ${value}`,  (80 + gap) + (rectWith *namElem ) + addGap * gap + 5, holst.height - 2);
-
-            if (sdvig > 30){
-                canvas.fillStyle = "#fff";
-                canvas.strokeStyle = "#000";
-                canvas.font = "normal 17px Arial";
-                canvas.fillText(value,  (80 + gap) + (rectWith *namElem ) + addGap * gap + 5, holst.height - 21 - sdvig + 25);
-            }
-
-            namElem++;
-            addGap = 1;
-        }
-    }
-
+    // Тут ещё необходимо сделать фильтрацию по месецам
     React.useEffect(()=>{
-        createCanvas([123000, 36300, 15000],['Январь', "Февраль", "Март"], 30);
-    },[])   
-
+        const swapValue = [];
+        const swapSetTitles = [];
+        axios.get('http://localhost:5501/params/cost/getCostForYear?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MCwibG9naW4iOiJkYXRhY29ydGVsIiwicGFzc3dvcmQiOiIhUWF6eHN3MjNlZGMiLCJpYXQiOjE2NTYyOTQ5NzAsImV4cCI6MTY1NjM4MTM3MH0.KuKmwXO6nVUA5249RQfobwPb_gvDfmEabqz0mTX3WPQ&year=2022&mounth=April')
+        .then(data => {
+            for (let item of data.data.data){
+                let dateChart = item['date'].split('-');
+                swapSetTitles.push(new Date(`1 ${dateChart[1]} 2020`).getMonth());
+                swapValue.push(item['Result']);
+            }
+            setSetTitles(swapSetTitles);
+            setValue(swapValue);
+        })
+        .catch((e)=>{
+            console.log("Ошибка при получении данных")
+        })
+    }, [])
     return(
         <div className="pages__graficsBlockWrap">
             <div className="whiteBlock pages__graficsBlock pages__graficsBigBlock">
-                <div ref={canvasWrap} className="canvas__wrap">
-                    <canvas ref={canv}>
-
-                    </canvas>
-                </div>
+                <BarChar value={value} titles={mounth} setTitles={setTitles}/>
             </div>
         </div>
     )
