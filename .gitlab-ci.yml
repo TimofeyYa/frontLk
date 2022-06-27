@@ -7,8 +7,7 @@ stages:
   - start
 
 rules:
-    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "main"'
-      when: on_success
+    - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main"
 
 downloud:
   stage: downloud
