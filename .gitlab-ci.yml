@@ -6,6 +6,9 @@ stages:
   - stop
   - start
 
+rules:
+    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "main"'
+      when: on_success
 
 downloud:
   stage: downloud
