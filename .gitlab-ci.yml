@@ -6,9 +6,6 @@ stages:
   - stop
   - start
 
-rules:
-    - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main"
-
 downloud:
   stage: downloud
   tags:
@@ -40,6 +37,9 @@ test:
 
 build:
   stage: build
+  only:
+    - merge_request
+    - main
   tags:
     - frontbuilder
   script: 
@@ -50,6 +50,9 @@ build:
 
 stop:
   stage: stop
+  only:
+    - merge_request
+    - main
   tags:
     - frontbuilder
   script: 
@@ -59,6 +62,9 @@ stop:
 
 start:
   stage: start
+  only:
+    - merge_request
+    - main
   tags: 
     - frontbuilder
   script:
