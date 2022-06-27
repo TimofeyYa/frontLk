@@ -115,16 +115,20 @@ function SignForm(){
                         window.location.href = '/';
                     }else{
                         setAllErrors("Не верный логин или пароль");
+                        setLock(false);
                         brootDefFunc();
                     }
                 }else{
                     setAllErrors("Ошибка подключения к серверу");
+                    setLock(false);
                 }
             }).catch(()=>{
                 setAllErrors("Ошибка подключения к серверу");
+                setLock(false);
             })
         }catch(e){
             setAllErrors("Ошибка подключения к серверу");
+            setLock(false);
         }
     }
     return(
