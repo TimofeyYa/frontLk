@@ -16,7 +16,7 @@ function MainPage (){
     const KEY = getCookie("userKey");
     
     // Работа с датой
-    const [date,setDate] = React.useState(new Date());
+    const [date,setDate] = React.useState([new Date()]);
     const [fullYear,setFullYear] = React.useState(false);
 
     if (!KEY){

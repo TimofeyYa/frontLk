@@ -4,13 +4,20 @@ import MonthElem from "./MonthElem";
 import YearElem from "./YearElem";
 
 function DateController(props){
+    // Активность меню
     const [menuActive, setMenuActive] = React.useState(true);
-    const [month, setMonth] = React.useState([0,0,0,0,0,0,0,0,0,0,0,0])
-    const [monthSelect, setMonthSelect] = React.useState(props.date.getMonth())
 
-    const [year, setYear] = React.useState(props.date.getFullYear())
+    // Контроль времени
+    const [month, setMonth] = React.useState([0,0,0,0,0,0,0,0,0,0,0,0])
+    const [monthSelect, setMonthSelect] = React.useState(props.date[0].getMonth())
+
+    const [year, setYear] = React.useState(props.date[0].getFullYear())
     const [yearSelect, setYearSelect] = React.useState(year);
 
+    // Закрытие формы при клике вне
+    const controller = React.useRef(null)
+
+    // Проверка на изменения в контроллере 
     let edit = false;
 
     React.useEffect(()=>{
@@ -26,16 +33,64 @@ function DateController(props){
     const allMonth = ['Январь', "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"]
 
     function selectMonth(num){
-        const dateMonth = [0,0,0,0,0,0,0,0,0,0,0,0];
+        let dateMonth = [0,0,0,0,0,0,0,0,0,0,0,0];
         
-        if (month[num] === 1){
-            setMonth(dateMonth);
-            props.setFullYear(true);
+        // Если выбран один из радомстоящий месяцев
+        if (month[num + 1] === 1 || month[num - 1] === 1){
+            // Проверке на то, не убрал ли пользователь один из средних месяцев
+            if (month[num + 1] != month[num - 1]){
+                dateMonth = [...month];
+
+                if (month[num] === 1){
+                    dateMonth[num] = 0;
+                }else{
+                    dateMonth[num] = 1;
+                }
+
+                // Поиск крайних чисел
+                let firstNum = -1;
+                let lastNum = -1;
+                for (let i = 0; i < dateMonth.length; i++){
+                    if (dateMonth[i] === 1){
+                        if ((dateMonth[i -1] == undefined || dateMonth[i-1] === 0) &&
+                        dateMonth[i+1] === 1){
+                            firstNum = i;
+                        }
+
+                        if ((dateMonth[i + 1] == undefined || dateMonth[i+1] === 0) &&
+                        dateMonth[i-1] === 1){
+                            lastNum = i;
+                        }
+                        
+                        if ((dateMonth[i + 1] == undefined || dateMonth[i+1] === 0) &&
+                        (dateMonth[i -1] == undefined || dateMonth[i-1] === 0)){
+                            firstNum = i;
+                            lastNum = i;
+                        }
+                    }
+                }
+                if (firstNum == lastNum){
+                    setMonthSelect(firstNum);
+                }else{
+                    setMonthSelect([firstNum,lastNum + 1]);
+                }
+                setMonth(dateMonth);
+            }else{
+                props.setFullYear(false);
+                setMonthSelect(num)
+                dateMonth[num] = 1;
+                setMonth(dateMonth);
+            }
         }else{
-            props.setFullYear(false);
-            setMonthSelect(num)
-            dateMonth[num] = 1;
-            setMonth(dateMonth);
+            if (month[num] === 1){
+                setMonth(dateMonth);
+                props.setFullYear(true);
+            }else{
+                props.setFullYear(false);
+                setMonthSelect(num)
+                dateMonth[num] = 1;
+                setMonth(dateMonth);
+            }
         }
     }
 
@@ -43,13 +98,33 @@ function DateController(props){
         if(!menuActive && edit){
             edit = false;
             setYear(yearSelect);
-            props.setDate(new Date(`${yearSelect}-${monthSelect+1}-01`));
+
+            //Проверка выбрали ли мы период
+            if (typeof(monthSelect) === 'object'){
+                props.setDate([new Date(`${yearSelect}-${monthSelect[0]+1}-01`), new Date(`${yearSelect}-${monthSelect[1]+1}-01`)]);
+            }else{
+                props.setDate([new Date(`${yearSelect}-${monthSelect+1}-01`)]);
+            }
         }
+
         setMenuActive(!menuActive);
     }
 
+
+    window.addEventListener('click',clickOutController);
+
+
+    function clickOutController({target}){
+        if (controller.current){
+            if (!controller.current.contains(target) && !menuActive){
+                menuControl();
+            }
+        }
+
+    }
+
     return(
-        <div className="pages__infoSelectWrap">
+        <div className="pages__infoSelectWrap" ref={controller}>
                 <div className="whiteBlock pages__infoBlock pages__infoSelect">
                     <div className="pages__infoSelectContent">
                         <div className="pages__infoPic">

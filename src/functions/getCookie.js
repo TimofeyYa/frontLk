@@ -6,3 +6,4 @@ function getCookie(name) {
 }
 
 export default getCookie;
+

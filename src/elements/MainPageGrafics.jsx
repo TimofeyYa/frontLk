@@ -8,24 +8,34 @@ import TableGrafic from "./grafics/TableGrafic";
 import { useSearchParams } from "react-router-dom";
 
 function MainPageGrafics(props){
-    const [endTime, setEndTime] = React.useState(new Date(`${props.date.getFullYear()}-${props.date.getMonth() + 2}-01`));
-    const [startTime, setStartTime] = React.useState(new Date(`${props.date.getFullYear()}-${props.date.getMonth() + 1}-01`));
+    const [endTime, setEndTime] = React.useState(new Date(`${props.date[0].getFullYear()}-${props.date[0].getMonth() + 2}-01`));
+    const [startTime, setStartTime] = React.useState(new Date(`${props.date[0].getFullYear()}-${props.date[0].getMonth()+1}-01`));
     
 
     React.useEffect(()=>{
-        if (props.fullYear){
-            setEndTime(new Date(`${props.date.getFullYear()}-12-31`))
-            setStartTime(new Date(`${props.date.getFullYear()}-01-01`))
-        }
-        else{
-            if (props.date.getMonth() + 2 === 13) {
-                setEndTime(new Date(`${props.date.getFullYear()}-${props.date.getMonth() + 1}-31`));
+        // Проверка выбран ли период
+        if(props.date.length > 1){
+            if (props.date[1].getMonth() + 2 === 13) {
+                setEndTime(new Date(`${props.date[1].getFullYear() + 1}-01-01`));
             }else{
-                setEndTime(new Date(`${props.date.getFullYear()}-${props.date.getMonth() + 2}-01`));
+                setEndTime(new Date(`${props.date[1].getFullYear()}-${props.date[1].getMonth() + 1}-01`));
             }
-            setStartTime(new Date(`${props.date.getFullYear()}-${props.date.getMonth()+1}-01`));
+            setStartTime(new Date(`${props.date[0].getFullYear()}-${props.date[0].getMonth()+1}-01`));
+        }else{
+            if (props.fullYear){
+                setEndTime(new Date(`${props.date[0].getFullYear()}-12-31`))
+                setStartTime(new Date(`${props.date[0].getFullYear()}-01-01`))
+            }
+            else{
+                if (props.date[0].getMonth() + 2 === 13) {
+                    setEndTime(new Date(`${props.date[0].getFullYear()}-${props.date[0].getMonth() + 1}-31`));
+                }else{
+                    setEndTime(new Date(`${props.date[0].getFullYear()}-${props.date[0].getMonth() + 2}-01`));
+                }
+                setStartTime(new Date(`${props.date[0].getFullYear()}-${props.date[0].getMonth()+1}-01`));
+            }
         }
-    }, [props.date])
+    }, [props.date[0], props.date[1]])
 
     // для разграничения по кластерам
     let [searchParams, setSearchParams] = useSearchParams();
