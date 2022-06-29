@@ -36,22 +36,22 @@ function MainPageGrafics(props){
     if (!route){
         return(
             <section className="pages__grafics">
-                <BigGrafic start={startTime.getTime()} end={endTime.getTime() - 1000*60*60*24}/> 
+                <BigGrafic start={startTime.getTime()} end={endTime.getTime()}/> 
             </section>
         )
     }else{
         if (claster){
             return(
                 <section className="pages__grafics">
-                    {claster && <CostGrafic start={startTime.getTime()} end={endTime.getTime() - 1000*60*60*24}/>        }
-                    {claster && <DetailGrafic start={startTime.getTime()} end={endTime.getTime() - 1000*60*60*24}/>}
-                    {claster && <ResurseGrafic token={props.token} start={startTime.getTime()} end={endTime.getTime() - 1000*60*60*24}/>   }
+                    {claster && <CostGrafic start={startTime.getTime()} end={endTime.getTime()}/>        }
+                    {claster && <DetailGrafic start={startTime.getTime()} end={endTime.getTime()}/>}
+                    {claster && <ResurseGrafic token={props.token} start={startTime.getTime()} end={endTime.getTime()}/>   }
                 </section>
             )
         }else{
             return(
                 <section className="pages__grafics">
-                    <BigGrafic start={startTime.getTime()} end={endTime.getTime() - 1000*60*60*24}/> 
+                    <BigGrafic start={startTime.getTime()} end={endTime.getTime()}/> 
                     <TableGrafic/>
                 </section>
             )

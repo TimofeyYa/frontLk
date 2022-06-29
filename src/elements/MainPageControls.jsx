@@ -4,6 +4,7 @@ import DateController from "./subElements/DateController";
 import NameLoader from "./loaders/NameLoader";
 import axios from "axios";
 import ServerData from "../config/ServerData.config";
+import numberNormalize from "../functions/numberNormalize";
 
 
 
@@ -11,20 +12,49 @@ function MainPageControls(props){
     const [name, setName] = React.useState("");
     
     React.useEffect(()=>{
-        const data = getUserInfo(setName, "name");
+        getUserInfo(setName, "name");
     }, []);
 
-    
+
+    // Для управления временем 
+
+    const [endTime, setEndTime] = React.useState(new Date(`${props.date.getFullYear()}-${props.date.getMonth() + 2}-01`));
+    const [startTime, setStartTime] = React.useState(new Date(`${props.date.getFullYear()}-${props.date.getMonth() + 1}-01`));
     const [sum, setSum] = React.useState(0);
+
     React.useEffect(()=>{
-        axios.get(`http://localhost:5501/params/cost/getBudget?token=${props.token}`)
+        if (props.fullYear){
+            setEndTime(new Date(`${props.date.getFullYear()}-12-31`))
+            setStartTime(new Date(`${props.date.getFullYear()}-01-01`))
+        }
+        else{
+            if (props.date.getMonth() + 2 === 13) {
+                setEndTime(new Date(`${props.date.getFullYear()}-${props.date.getMonth() + 1}-31`));
+            }else{
+                setEndTime(new Date(`${props.date.getFullYear()}-${props.date.getMonth() + 2}-01`));
+            }
+            setStartTime(new Date(`${props.date.getFullYear()}-${props.date.getMonth()+1}-01`));
+        }
+
+    }, [props.date])
+
+    React.useEffect(()=>{
+        console.log(startTime);
+        console.log(endTime);
+        axios.get(`${new ServerData().getHost()}/params/cost/getBudget?token=${props.token}&start=${`${startTime.getFullYear()}-${startTime.getMonth() + 1}-${startTime.getDate()}`}&end=${`${endTime.getFullYear()}-${endTime.getMonth() + 1}-${endTime.getDate()}`}`)
         .then(data=>{
             console.log(data)
-            setSum(data.data.data[0].sum);
+            if (data.data.data[0].sum == null)
+            setSum(0);
+            else
+            setSum(numberNormalize(data.data.data[0].sum));
         }).catch(e=>{
+            setSum(0);
             console.log(e);
         })
-    },[]);
+    }, [startTime])
+
+
 
     return(
         <section className="pages__info">

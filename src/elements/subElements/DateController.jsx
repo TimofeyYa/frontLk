@@ -27,7 +27,7 @@ function DateController(props){
 
     function selectMonth(num){
         const dateMonth = [0,0,0,0,0,0,0,0,0,0,0,0];
-
+        
         if (month[num] === 1){
             setMonth(dateMonth);
             props.setFullYear(true);
