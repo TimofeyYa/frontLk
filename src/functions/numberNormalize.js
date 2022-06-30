@@ -1,4 +1,4 @@
-function numberNormalize(number = 0){
+function numberNormalize(number = 0, round = true){
     let numText; // само число
     let floatChart = ''; // Дробная часть от числа
     if (typeof(number) == 'number'){
@@ -12,6 +12,14 @@ function numberNormalize(number = 0){
         let swap = numText.split('.');
         numText = swap[0];
         floatChart = swap[1];
+    }
+
+    if (round && floatChart.length > 2){
+        if (floatChart[0] === '0'){
+            floatChart ='0'+Math.round(Number(floatChart) / 100);
+        }else{
+            floatChart =''+Math.round(Number(floatChart) / 100);
+        }
     }
 
     // Итоговый результат

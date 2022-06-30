@@ -519,13 +519,13 @@ footer{
 
 .pages__infoDateMounth{
     padding-top: 10px;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
 }
 
 .pages__infoDateItem{
     background-color: var(--liteGray-color);
     border-radius: 3px;
-    height: 34px;
+    height: 32px;
     width: 100%;
     display: flex;
     align-items: center;
@@ -678,3 +678,11 @@ footer{
     max-width: 90%;
 }
 
+.pages__infoDateBtnWrap{
+    padding-bottom: 10px;
+}
+
+.pages__infoDateBtnWrap .mainBtn{
+    width: 100%;
+    height: 38px;
+}

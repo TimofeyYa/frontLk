@@ -169,6 +169,9 @@ function DateController(props){
                             <div className="pages__infoDateMounth">
                                 {allMonth.map((item, index)=> <MonthElem key={`month_${index}_date`} name={item} num={index} active={month[index]} selectMonth={selectMonth}/>)}
                             </div>
+                            <div className="pages__infoDateBtnWrap">
+                                <button onClick={menuControl} className="mainBtn orangeBtn">Применить</button>
+                            </div>
                         </div>
                     </div>
                 </div>

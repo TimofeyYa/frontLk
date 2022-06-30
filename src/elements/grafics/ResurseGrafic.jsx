@@ -4,6 +4,7 @@ import NumbersLoader from "../loaders/NumbersLoader";
 import { useSearchParams } from "react-router-dom";
 import clasterData from "../../clasterData.json";
 import ServerData from "../../config/ServerData.config";
+import numberNormalize from "../../functions/numberNormalize";
 
 function ResurseGrafic(props){
     const [data, setData] = React.useState({
@@ -44,30 +45,30 @@ function ResurseGrafic(props){
         axios.get(`${new ServerData().getHost()}/params/claster/getClasterAll?start=${start}&end=${end}&resId=${clasterId}&token=${props.token}`) .then(function (response) {
             const swapObj = {...data};
       
-            swapObj["claster"][0] = response.data.countMaxStartVm;
-            swapObj["claster"][1] = response.data.countMaxVm;
-            swapObj["claster"][2] = response.data.countServers;
-            swapObj["claster"][3] = response.data.consolid;
+            swapObj["claster"][0] = numberNormalize(response.data.countMaxStartVm);
+            swapObj["claster"][1] = numberNormalize(response.data.countMaxVm);
+            swapObj["claster"][2] = numberNormalize(response.data.countServers);
+            swapObj["claster"][3] = numberNormalize(response.data.consolid);
             setData(swapObj);
         })
 
         axios.get(`${new ServerData().getHost()}/params/power/getPowerAll?start=${start}&end=${end}&resId=${clasterId}&token=${props.token}`) .then(function (response) {
             const swapObj = {...data};
           
-            swapObj["power"][0] = response.data.CPUChastot;
-            swapObj["power"][1] = response.data.countCPU;
-            swapObj["power"][2] = response.data.RAM;
-            swapObj["power"][3] = response.data.storage;
+            swapObj["power"][0] = numberNormalize(response.data.CPUChastot);
+            swapObj["power"][1] = numberNormalize(response.data.countCPU);
+            swapObj["power"][2] = numberNormalize(response.data.RAM);
+            swapObj["power"][3] = numberNormalize(response.data.storage);
             setData(swapObj);
         })
 
         axios.get(`${new ServerData().getHost()}/params/usePower/getUsePowerAll?start=${start}&end=${end}&resId=${clasterId}&token=${props.token}`) .then(function (response) {
             const swapObj = {...data};
           
-            swapObj["usePower"][0] = response.data.middleChastotCPU;
-            swapObj["usePower"][1] = response.data.middleCountCPU;
-            swapObj["usePower"][2] = response.data.middleCountRAM;
-            swapObj["usePower"][3] = response.data.clasterStorage;
+            swapObj["usePower"][0] = numberNormalize(response.data.middleChastotCPU);
+            swapObj["usePower"][1] = numberNormalize(response.data.middleCountCPU);
+            swapObj["usePower"][2] = numberNormalize(response.data.middleCountRAM);
+            swapObj["usePower"][3] = numberNormalize(response.data.clasterStorage);
             setData(swapObj);
         })
     }, [props.start, claster]);
