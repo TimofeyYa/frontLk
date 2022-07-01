@@ -95,7 +95,7 @@ function ResurseGrafic(props){
                             <h5>Кол-во серверов, шт</h5>
                         </div>
                         <div className="pages__graficsResurseBlockItem">
-                            <h4>{data["claster"][3] === -1 ? <NumbersLoader/> : data["claster"][3]}</h4>
+                            <h4>{data["claster"][3] === -1 ? <NumbersLoader/> : `1:${data["claster"][3]}`}</h4>
                             <h5>Консолидация pCPU к vCPU</h5>
                         </div>
                     </div>

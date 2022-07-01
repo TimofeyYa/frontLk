@@ -620,7 +620,8 @@ footer{
 
 .pages__graficsDetailBlockItem{
     padding: 10px;
-    min-height: 173px;
+    min-height: 193px;
+    position: relative;
 }
 
 .pages__graficsBlockTitle{
@@ -685,4 +686,56 @@ footer{
 .pages__infoDateBtnWrap .mainBtn{
     width: 100%;
     height: 38px;
+}
+
+
+/* popup */
+
+.popup{
+    position: fixed;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup__contentScale{
+    padding: 25px;
+    width: 1000px;
+    position: relative;
+    height: 600px;
+}
+
+.popup-none{
+    display: none;
+}
+
+.popScaleExit{
+    position: absolute;
+    top:10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.scaller{
+    position: absolute;
+    top:5px;
+    right: 5px;
+    height: 23px;
+    width: 23px;
+    border-radius: 50%;
+    background-color: var(--middleGray-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.scaller svg{
+    height: 10px;
+    opacity: 0.9;
 }

@@ -54,7 +54,7 @@ function MainPageGrafics(props){
             return(
                 <section className="pages__grafics">
                     {claster && <CostGrafic start={startTime.getTime()} end={endTime.getTime()}/>        }
-                    {claster && <DetailGrafic start={startTime.getTime()} end={endTime.getTime()}/>}
+                    {claster && <DetailGrafic setScale={props.setScale} start={startTime.getTime()} end={endTime.getTime()}/>}
                     {claster && <ResurseGrafic token={props.token} start={startTime.getTime()} end={endTime.getTime()}/>   }
                 </section>
             )
