@@ -1,27 +1,24 @@
 import axios from "axios";
-import getCookie from "./getCookie";
-import setCookie from "./setCookie";
 import ServerData from "../config/ServerData.config";
+import CookieController from "./CookieController";
 
 const isAuth = async ()=> {
-
-
-    const token = getCookie("userKey");
+    const token = CookieController.getCookie("userKey");
 
     if (token){
         await axios.get(`${new ServerData().getHost()}/user/isAuth?token=${token}`)
         .then(function (response) {
             const data = response.data;
-            if (data.status == 0){
-                setCookie('userKey', "");
+            if (data.status === 0){
+                CookieController.setCookie('userKey', "");
                 window.location.href="/login";
             }
         }).catch(()=>{
-            setCookie('userKey', "");
+            CookieController.setCookie('userKey', "");
             window.location.href="/login";
         })
     }else{
-        setCookie('userKey', "");
+        CookieController.setCookie('userKey', "");
     }
    
 }

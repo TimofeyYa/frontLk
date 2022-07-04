@@ -1,13 +1,11 @@
 import React from "react";
 import '../css/signin.css';
 import SignForm from "../elements/SignForm";
-import getCookie from '../functions/getCookie'
+import CookieController from "../functions/CookieController";
 import {Navigate} from 'react-router-dom';
 
 function SignPage (){
-
-    const KEY = getCookie("userKey");
-
+    const KEY = CookieController.getCookie("userKey");
     
     if (!(KEY.length > 10)){
     return(

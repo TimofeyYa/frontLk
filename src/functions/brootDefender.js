@@ -1,5 +1,3 @@
-'use strict'
-
 function brootDefender(setState, setTime){
     let date = localStorage.getItem('blockDate');
     if (date){

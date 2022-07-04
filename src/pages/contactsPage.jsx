@@ -1,12 +1,12 @@
 import React from "react";
 import PageNav from "../elements/PageNav";
-import getCookie from '../functions/getCookie';
+import CookieController from "../functions/CookieController";
 import {Navigate} from 'react-router-dom';
 import '../css/contacts.css'
 
 function ContactsPage (){
 
-    const KEY = getCookie("userKey");
+    const KEY = CookieController.getCookie("userKey");
 
     if (!KEY){
         window.location.href = '/login';

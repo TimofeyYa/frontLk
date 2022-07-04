@@ -1,15 +1,15 @@
 import React from "react";
-import getCookie from '../functions/getCookie';
 import UserMenu from "../elements/UserMenu";
 import getUserInfo from "../functions/getUserInfo";
+import CookieController from "../functions/CookieController";
 
 function Header(){
-    const KEY = getCookie("userKey");
+    const KEY = CookieController.getCookie("userKey");
     const [name, setName] = React.useState("");
     const [menuActive, setMenuActive] = React.useState(true);
     React.useEffect(()=>{
         if (KEY.length > 10){
-            const data = getUserInfo(setName, "user");
+            getUserInfo(setName, "user");
         }else{
             setName("Личный кабинет")
             setMenuActive(false);

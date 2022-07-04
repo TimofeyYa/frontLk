@@ -1,10 +1,10 @@
 import axios from "axios";
-import getCookie from "./getCookie";
+import CookieController from "./CookieController";
 import ServerData from "../config/ServerData.config";
 
 function getComponents(setFunc = () =>{},name = null){
     let url;
-    let token = getCookie("userKey");
+    let token = CookieController.getCookie("userKey");
 
     if (token){
         if (name == null){

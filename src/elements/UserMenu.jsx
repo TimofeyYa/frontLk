@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
-import setCookie from "../functions/setCookie";
 import HeaderLoader from "./loaders/HeaderLoader";
+import CookieController from "../functions/CookieController";
 
 function UserMenu(props){
     const [menuActive, setMenuActive] = React.useState(true);
@@ -13,7 +13,7 @@ function UserMenu(props){
     }
 
     function exit(){
-        setCookie('userKey', "");
+        CookieController.setCookie('userKey', "");
         window.location.reload();
     }
 

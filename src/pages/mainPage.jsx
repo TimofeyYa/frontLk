@@ -1,6 +1,6 @@
 import React from "react";
 import {Navigate, useSearchParams} from 'react-router-dom';
-import getCookie from '../functions/getCookie'
+import CookieController from "../functions/CookieController";
 import PageNav from "../elements/PageNav";
 import MainPageControls from "../elements/MainPageControls";
 import MainPageGrafics from "../elements/MainPageGrafics";
@@ -8,14 +8,13 @@ import MainPageScaleGraf from "../elements/MainPageScaleGraf";
 
 
 function MainPage (){ 
-    
+    // Работа с проверкой на наличее ключа
+    const KEY = CookieController.getCookie("userKey");
+        
     // Работа с параметрами для фильтрации
     const [searchParams, setSearchParams] = useSearchParams();
     const [route, setRoute] = React.useState(searchParams.get("route"));
 
-    // Работа с проверкой на наличее ключа
-    const KEY = getCookie("userKey");
-    
     // Работа с датой
     const [date,setDate] = React.useState([new Date()]);
     const [fullYear,setFullYear] = React.useState(false);
@@ -27,7 +26,6 @@ function MainPage (){
         window.location.href = '/login';
         return;
     }
-
 
     if (KEY.length > 10){
         return(
