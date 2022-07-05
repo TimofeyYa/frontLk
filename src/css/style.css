@@ -307,9 +307,17 @@ select {
 
 .pages__info{
     display: grid;
-    grid-template-columns: 4fr 3fr 3fr;
     grid-column-gap: 20px;
 }
+
+.pages__info--mainPage{
+    grid-template-columns: 4fr 3fr 3fr;
+}
+
+.pages__info--resurses{
+    grid-template-columns: 7fr 3fr;
+}
+
 .pages__infoBlock{
     display: flex;
     align-items: center;

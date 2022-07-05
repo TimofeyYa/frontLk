@@ -1,9 +1,9 @@
 import React from "react";
 import {useSearchParams} from 'react-router-dom';
 import CookieController from "../../functions/CookieController";
-import MainPageControls from "../../elements/MainPageControls";
-import MainPageGrafics from "../../elements/MainPageGrafics";
-import MainPageScaleGraf from "../../elements/MainPageScaleGraf";
+import MainPageControls from "../../elements/mainPage/MainPageControls";
+import MainPageGrafics from "../../elements/mainPage/MainPageGrafics";
+import ScaleGraf from "../../elements/ScaleGraf";
 
 
 function BudgetPage (){ 
@@ -27,7 +27,7 @@ function BudgetPage (){
             <div className="pages__content">
                 <MainPageControls token={KEY} fullYear={fullYear} setFullYear={setFullYear} route={route}  date={date} setDate={setDate}/>
                 <MainPageGrafics setScale={setScaleGraf} fullYear={fullYear} token={KEY} route={route}  date={date}/>
-                <MainPageScaleGraf src={scaleGraf} setScale={setScaleGraf}/>
+                <ScaleGraf src={scaleGraf} setScale={setScaleGraf}/>
             </div>
         )
 

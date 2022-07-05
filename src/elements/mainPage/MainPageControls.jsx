@@ -1,10 +1,10 @@
 import React from "react";
-import getUserInfo from "../functions/getUserInfo";
-import DateController from "./subElements/DateController";
-import NameLoader from "./loaders/NameLoader";
+import getUserInfo from "../../functions/getUserInfo";
+import DateController from "../subElements/DateController";
+import NameLoader from "../loaders/NameLoader";
 import axios from "axios";
-import ServerData from "../config/ServerData.config";
-import numberNormalize from "../functions/numberNormalize";
+import ServerData from "../../config/ServerData.config";
+import numberNormalize from "../../functions/numberNormalize";
 
 
 
@@ -63,7 +63,7 @@ function MainPageControls(props){
 
 
     return(
-        <section className="pages__info">
+        <section className="pages__info pages__info--mainPage">
             <div className="whiteBlock pages__infoBlock">
                 <div className="pages__infoPic">
                     <div className="pages__infoPicWrap">

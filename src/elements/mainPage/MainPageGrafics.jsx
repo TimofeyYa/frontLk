@@ -1,9 +1,9 @@
 import React from "react";
-import BigGrafic from "./grafics/BigGrafic";
-import CostGrafic from "./grafics/CostGrafic";
-import DetailGrafic from "./grafics/DetailGrafic";
-import ResurseGrafic from "./grafics/ResurseGrafic";
-import TableGrafic from "./grafics/TableGrafic";
+import BigGrafic from "../grafics/BigGrafic";
+import CostGrafic from "../grafics/CostGrafic";
+import DetailGrafic from "../grafics/DetailGrafic";
+import ResurseGrafic from "../grafics/ResurseGrafic";
+import TableGrafic from "../grafics/TableGrafic";
 
 import { useSearchParams } from "react-router-dom";
 
@@ -63,7 +63,7 @@ function MainPageGrafics(props){
             return(
                 <section className="pages__grafics">
                     <BigGrafic start={startTime.getTime()} end={endTime.getTime()}/> 
-                    <TableGrafic/>
+                    <TableGrafic start={startTime.getTime()} end={endTime.getTime()}/>
                 </section>
             )
         }

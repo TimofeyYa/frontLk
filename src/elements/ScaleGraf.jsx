@@ -1,18 +1,17 @@
 import classNames from "classnames";
 import React from "react";
 
-function MainPageScaleGraf(props){
+function ScaleGraf(props){
     const popup = React.useRef(null);
 
     React.useEffect(()=>{
         popup.current.addEventListener("click", (e)=>{
-            if (e.target == popup.current){
+            if (e.target == popup.current)
                 props.setScale(false)
-            }
         })
     }, [])
 
-    return(
+    return (
         <div ref={popup} className={classNames('popup', {'popup-none': !props.src})}>
             <div className="popup__content popup__contentScale whiteBlock">
                 <iframe title="bigGraf" src={props.src} width="100%" height="100%" frameBorder="0"></iframe>
@@ -26,4 +25,4 @@ function MainPageScaleGraf(props){
     )
 }
 
-export default MainPageScaleGraf;
+export default ScaleGraf;
