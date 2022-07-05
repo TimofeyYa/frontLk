@@ -8,8 +8,7 @@ const isAuth = async ()=> {
     if (token){
         await axios.get(`${new ServerData().getHost()}/user/isAuth?token=${token}`)
         .then(function (response) {
-            const data = response.data;
-            if (data.status === 0){
+            if (response.data.status === 0){
                 CookieController.setCookie('userKey', "");
                 window.location.href="/login";
             }
@@ -17,10 +16,7 @@ const isAuth = async ()=> {
             CookieController.setCookie('userKey', "");
             window.location.href="/login";
         })
-    }else{
-        CookieController.setCookie('userKey', "");
-    }
-   
+    }else CookieController.setCookie('userKey', "");
 }
 
 export default isAuth;

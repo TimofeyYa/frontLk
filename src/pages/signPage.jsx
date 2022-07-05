@@ -15,7 +15,7 @@ function SignPage (){
     )
     }else{
         return(
-            <Navigate replace to="/" />
+            <Navigate replace to="/cabinet" />
         )
     }
 }

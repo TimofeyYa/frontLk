@@ -1,8 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import axios from "axios";
-import setBrootDefender from "../functions/setBrootDefender";
-import brootDefender from "../functions/brootDefender";
+import BrootDefenderController from "../functions/BrootDefenderController";
 import ServerData from "../config/ServerData.config";
 
 function SignForm(){
@@ -26,12 +25,12 @@ function SignForm(){
             setLock(true);
             setLoginValue('');
             setPassValue('');
-            setBrootDefender(setLockDate);
+            BrootDefenderController.setBrootDefender(setLockDate);
         }
     }
 
     React.useEffect(()=>{
-        brootDefender(setLock, setLockDate);
+        BrootDefenderController.isBrootDefenderActive(setLock, setLockDate);
     }, [])
 
     React.useEffect(()=>{  
@@ -96,7 +95,7 @@ function SignForm(){
         try{
             removeAllErrors();
 
-            if (loginValue.length > 25 || loginValue.length == 0){
+            if (loginValue.length > 25 || loginValue.length === 0){
                 setErrorLogin(true, "Поле 'Логин' заполненно не верно");
                 return;
             }
@@ -108,9 +107,9 @@ function SignForm(){
             axios.get(`${new ServerData().getHost()}/user/login?login=${loginValue}&password=${passValue}`)
             .then(function (response) {
                 setLock(false);
-                if (response.status == '200'){
+                if (response.status === '200'){
                     let data = response.data;
-                    if (data.status == 1){
+                    if (data.status === 1){
                         document.cookie = `userKey=${data.token}`;
                         window.location.href = '/';
                     }else{

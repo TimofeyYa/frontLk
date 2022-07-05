@@ -17,10 +17,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<MainPage />}/>
+        <Route path="/cabinet/*" element={<MainPage />}/>
         <Route path="login" element={<SignPage />} />
-        <Route path="contacts" element={<ContactsPage />} />
-        <Route path='*' element={<SignPage />} />
+        <Route path='*' element={<SignPage />}/>
       </Routes>
     </BrowserRouter>
   );

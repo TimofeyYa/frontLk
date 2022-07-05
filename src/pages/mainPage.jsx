@@ -1,26 +1,15 @@
 import React from "react";
-import {Navigate, useSearchParams} from 'react-router-dom';
 import CookieController from "../functions/CookieController";
+import {Routes, Route, Navigate } from 'react-router-dom';
 import PageNav from "../elements/PageNav";
-import MainPageControls from "../elements/MainPageControls";
-import MainPageGrafics from "../elements/MainPageGrafics";
-import MainPageScaleGraf from "../elements/MainPageScaleGraf";
+import BudgetPage from "./budgetPage";
+import ContactsPage from "./contactsPage";
+
 
 
 function MainPage (){ 
     // Работа с проверкой на наличее ключа
     const KEY = CookieController.getCookie("userKey");
-        
-    // Работа с параметрами для фильтрации
-    const [searchParams, setSearchParams] = useSearchParams();
-    const [route, setRoute] = React.useState(searchParams.get("route"));
-
-    // Работа с датой
-    const [date,setDate] = React.useState([new Date()]);
-    const [fullYear,setFullYear] = React.useState(false);
-
-    // Управление для scale
-    const [scaleGraf,setScaleGraf] = React.useState(false);
 
     if (!KEY){
         window.location.href = '/login';
@@ -36,10 +25,12 @@ function MainPage (){
                 <div className="pages__struct">
                     <PageNav/>
                     <div className="pages__content">
-                        <MainPageControls token={KEY} fullYear={fullYear} setFullYear={setFullYear} route={route}  date={date} setDate={setDate}/>
-    
-                        <MainPageGrafics setScale={setScaleGraf} fullYear={fullYear} token={KEY} route={route}  date={date}/>
-                        <MainPageScaleGraf src={scaleGraf} setScale={setScaleGraf}/>
+                        <Routes>
+                            <Route path="/budget" element={<BudgetPage />}/>
+                            <Route path="/contacts" element={<ContactsPage />}/>
+
+                            <Route path="/*" element={<Navigate replace to="/cabinet/budget" />}/>
+                        </Routes>
                     </div>
                 </div>
             </div>
