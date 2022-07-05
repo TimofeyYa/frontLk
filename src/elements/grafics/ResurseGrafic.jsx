@@ -20,6 +20,8 @@ function ResurseGrafic(props){
     let [searchParams, setSearchParams] = useSearchParams();
     let claster = searchParams.get("claster");
 
+    // Выставляем последнюю дату 
+    let [lastDate, setLastDate] = React.useState('');
     React.useEffect(()=>{
         // Получаем иформацию о кластере
         let clasterId = -1
@@ -37,8 +39,8 @@ function ResurseGrafic(props){
         });
 
         // Получаем информацию по параметрам
-        const startDate = new Date(props.start);
-        const endDate = new Date(props.end);
+        const endDate = new Date();
+        const startDate = new Date(`${endDate.getFullYear}-${endDate.getMonth + 1}-01`);
         const start = `${startDate.getFullYear()}-${startDate.getMonth() + 1}-${startDate.getDate()}`;
         const end = `${endDate.getFullYear()}-${endDate.getMonth() + 1}-${endDate.getDate()}`;
 

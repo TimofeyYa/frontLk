@@ -46,7 +46,7 @@ function ResursesPageGrafics(props){
     if (!route){
         return(
             <section className="pages__grafics">
-                <BigGrafic start={startTime.getTime()} end={endTime.getTime()}/> 
+                
             </section>
         )
     }else{
@@ -54,7 +54,6 @@ function ResursesPageGrafics(props){
             return(
                 <section className="pages__grafics">
                     {claster && <ResurseGrafic token={props.token} start={startTime.getTime()} end={endTime.getTime()}/>   }
-                    {claster && <CostGrafic start={startTime.getTime()} end={endTime.getTime()}/>        }
                     {claster && <DetailGrafic setScale={props.setScale} start={startTime.getTime()} end={endTime.getTime()}/>}
                     
                 </section>
@@ -62,8 +61,7 @@ function ResursesPageGrafics(props){
         }else{
             return(
                 <section className="pages__grafics">
-                    <BigGrafic start={startTime.getTime()} end={endTime.getTime()}/> 
-                    <TableGrafic start={startTime.getTime()} end={endTime.getTime()}/>
+                    
                 </section>
             )
         }
