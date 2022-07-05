@@ -1,19 +1,10 @@
 import React from "react";
-import PageNav from "../elements/PageNav";
-import CookieController from "../functions/CookieController";
-import {Navigate} from 'react-router-dom';
-import '../css/contacts.css'
+import CookieController from "../../functions/CookieController";
+import '../../css/contacts.css'
 
 function ContactsPage (){
-
     const KEY = CookieController.getCookie("userKey");
 
-    if (!KEY){
-        window.location.href = '/login';
-        return;
-    }
-
-    if (KEY.length > 10){
     return(
         <div className="pages__content">
             <section className="contacts">
@@ -48,11 +39,7 @@ function ContactsPage (){
             </section>
         </div>
     )
-    }else{
-        return(
-            <Navigate replace to="/login" />
-        )
-    }
+
 }
 
 export default ContactsPage;

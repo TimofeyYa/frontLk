@@ -1,9 +1,9 @@
 import React from "react";
 import {useSearchParams} from 'react-router-dom';
-import CookieController from "../functions/CookieController";
-import MainPageControls from "../elements/MainPageControls";
-import MainPageGrafics from "../elements/MainPageGrafics";
-import MainPageScaleGraf from "../elements/MainPageScaleGraf";
+import CookieController from "../../functions/CookieController";
+import MainPageControls from "../../elements/MainPageControls";
+import MainPageGrafics from "../../elements/MainPageGrafics";
+import MainPageScaleGraf from "../../elements/MainPageScaleGraf";
 
 
 function BudgetPage (){ 
@@ -11,8 +11,8 @@ function BudgetPage (){
     const KEY = CookieController.getCookie("userKey");
         
     // Работа с параметрами для фильтрации
-    const [searchParams, setSearchParams] = useSearchParams();
-    const [route, setRoute] = React.useState(searchParams.get("route"));
+    const [searchParams] = useSearchParams();
+    const [route] = React.useState(searchParams.get("route"));
 
     // Работа с датой
     const [date,setDate] = React.useState([new Date()]);

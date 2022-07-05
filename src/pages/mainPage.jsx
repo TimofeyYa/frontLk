@@ -2,8 +2,7 @@ import React from "react";
 import CookieController from "../functions/CookieController";
 import {Routes, Route, Navigate } from 'react-router-dom';
 import PageNav from "../elements/PageNav";
-import BudgetPage from "./budgetPage";
-import ContactsPage from "./contactsPage";
+import {Budget, Contacts, Docs, Prise, Resurses, SLA} from './cabinet/index';
 
 
 
@@ -26,9 +25,12 @@ function MainPage (){
                     <PageNav/>
                     <div className="pages__content">
                         <Routes>
-                            <Route path="/budget" element={<BudgetPage />}/>
-                            <Route path="/contacts" element={<ContactsPage />}/>
-
+                            <Route path="/budget" element={<Budget />}/>
+                            <Route path="/contacts" element={<Contacts />}/>
+                            <Route path="/docs" element={<Docs />}/>
+                            <Route path="/prises" element={<Prise />}/>
+                            <Route path="/resurses" element={<Resurses />}/>
+                            <Route path="/SLA" element={<SLA />}/>
                             <Route path="/*" element={<Navigate replace to="/cabinet/budget" />}/>
                         </Routes>
                     </div>

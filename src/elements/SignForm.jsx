@@ -107,9 +107,9 @@ function SignForm(){
             axios.get(`${new ServerData().getHost()}/user/login?login=${loginValue}&password=${passValue}`)
             .then(function (response) {
                 setLock(false);
-                if (response.status === '200'){
+                if (Number(response.status) === 200){
                     let data = response.data;
-                    if (data.status === 1){
+                    if (Number(data.status) === 1){
                         document.cookie = `userKey=${data.token}`;
                         window.location.href = '/';
                     }else{
