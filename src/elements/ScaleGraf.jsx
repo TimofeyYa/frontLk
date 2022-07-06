@@ -6,7 +6,7 @@ function ScaleGraf(props){
 
     React.useEffect(()=>{
         popup.current.addEventListener("click", (e)=>{
-            if (e.target == popup.current)
+            if (e.target === popup.current)
                 props.setScale(false)
         })
     }, [])

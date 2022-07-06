@@ -4,15 +4,9 @@ import {useSearchParams} from 'react-router-dom'
 import clasterData from "../../clasterData.json";
 
 function DetailGrafic(props){
-    const [url,setUrl] = React.useState(false);
-
-    React.useEffect(()=>{
-        
-    },[])
-
     const [platformName, setPlatformName] = React.useState('');
     
-    let [searchParams, setSearchParams] = useSearchParams();
+    let [searchParams] = useSearchParams();
     let claster = searchParams.get("claster");
 
     const [urlVM, setUrlVm] = React.useState(false);

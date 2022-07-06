@@ -5,6 +5,7 @@ import { useSearchParams } from "react-router-dom";
 import clasterData from "../../clasterData.json";
 import ServerData from "../../config/ServerData.config";
 import numberNormalize from "../../functions/numberNormalize";
+import dateToNormalString from "../../functions/dateToNormalString";
 
 function ResurseGrafic(props){
     const [data, setData] = React.useState({
@@ -17,7 +18,7 @@ function ResurseGrafic(props){
     const [platformName, setPlatformName] = React.useState('Общие ресурсы платформы')
     
     // Для сортировки по параметрам
-    let [searchParams, setSearchParams] = useSearchParams();
+    let [searchParams] = useSearchParams();
     let claster = searchParams.get("claster");
 
     // Выставляем последнюю дату 
@@ -37,14 +38,13 @@ function ResurseGrafic(props){
             "power":[-1,-1,-1,-1],
             "usePower":[-1,-1,-1,-1]
         });
+        
+        axios.get(`${new ServerData().getHost()}/params/lastDateRouter?token=${props.token}`) .then(function (response) {
+            const date = dateToNormalString(new Date(response.data.data));
+            if (response.data) setLastDate(date);
+        })
 
-        // Получаем информацию по параметрам
-        const endDate = new Date();
-        const startDate = new Date(`${endDate.getFullYear}-${endDate.getMonth + 1}-01`);
-        const start = `${startDate.getFullYear()}-${startDate.getMonth() + 1}-${startDate.getDate()}`;
-        const end = `${endDate.getFullYear()}-${endDate.getMonth() + 1}-${endDate.getDate()}`;
-
-        axios.get(`${new ServerData().getHost()}/params/claster/getClasterAll?start=${start}&end=${end}&resId=${clasterId}&token=${props.token}`) .then(function (response) {
+        axios.get(`${new ServerData().getHost()}/params/claster/getClasterAll?resId=${clasterId}&token=${props.token}`) .then(function (response) {
             const swapObj = {...data};
       
             swapObj["claster"][0] = numberNormalize(response.data.countMaxStartVm);
@@ -54,7 +54,7 @@ function ResurseGrafic(props){
             setData(swapObj);
         })
 
-        axios.get(`${new ServerData().getHost()}/params/power/getPowerAll?start=${start}&end=${end}&resId=${clasterId}&token=${props.token}`) .then(function (response) {
+        axios.get(`${new ServerData().getHost()}/params/power/getPowerAll?resId=${clasterId}&token=${props.token}`) .then(function (response) {
             const swapObj = {...data};
           
             swapObj["power"][0] = numberNormalize(response.data.CPUChastot);
@@ -64,7 +64,7 @@ function ResurseGrafic(props){
             setData(swapObj);
         })
 
-        axios.get(`${new ServerData().getHost()}/params/usePower/getUsePowerAll?start=${start}&end=${end}&resId=${clasterId}&token=${props.token}`) .then(function (response) {
+        axios.get(`${new ServerData().getHost()}/params/usePower/getUsePowerAll?resId=${clasterId}&token=${props.token}`) .then(function (response) {
             const swapObj = {...data};
           
             swapObj["usePower"][0] = numberNormalize(response.data.middleChastotCPU);
@@ -75,10 +75,11 @@ function ResurseGrafic(props){
         })
     }, [props.start, claster]);
 
+    
     return(
         <div className="pages__graficsBlockWrap">
             <div className="pages__graficsBlockTitle">
-                <h2>{platformName}</h2>
+                <h2>{platformName} за {lastDate}</h2>
             </div>
             <div className="pages__graficsBlock pages__graficsResurseBlock">
                 <div className="whiteBlock pages__graficsResurseBlockSecWrap">

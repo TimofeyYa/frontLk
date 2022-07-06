@@ -38,14 +38,13 @@ function DateController(props){
         // Если выбран один из радомстоящий месяцев
         if (month[num + 1] === 1 || month[num - 1] === 1){
             // Проверке на то, не убрал ли пользователь один из средних месяцев
-            if (month[num + 1] != month[num - 1]){
+            if (month[num + 1] !== month[num - 1]){
                 dateMonth = [...month];
 
-                if (month[num] === 1){
+                if (month[num] === 1)
                     dateMonth[num] = 0;
-                }else{
+                else
                     dateMonth[num] = 1;
-                }
 
                 // Поиск крайних чисел
                 let firstNum = -1;
@@ -57,23 +56,22 @@ function DateController(props){
                             firstNum = i;
                         }
 
-                        if ((dateMonth[i + 1] == undefined || dateMonth[i+1] === 0) &&
+                        if ((dateMonth[i + 1] === undefined || dateMonth[i+1] === 0) &&
                         dateMonth[i-1] === 1){
                             lastNum = i;
                         }
                         
                         if ((dateMonth[i + 1] == undefined || dateMonth[i+1] === 0) &&
-                        (dateMonth[i -1] == undefined || dateMonth[i-1] === 0)){
+                        (dateMonth[i -1] === undefined || dateMonth[i-1] === 0)){
                             firstNum = i;
                             lastNum = i;
                         }
                     }
                 }
-                if (firstNum == lastNum){
+                if (firstNum === lastNum)
                     setMonthSelect(firstNum);
-                }else{
+                else
                     setMonthSelect([firstNum,lastNum + 1]);
-                }
                 setMonth(dateMonth);
             }else{
                 props.setFullYear(false);
@@ -100,13 +98,13 @@ function DateController(props){
             setYear(yearSelect);
 
             //Проверка выбрали ли мы период
-            if (typeof(monthSelect) === 'object'){
-                props.setDate([new Date(`${yearSelect}/${monthSelect[0]+1}/01`), new Date(`${yearSelect}/${monthSelect[1]+1}/01`)]);
-            }else{
+            if (typeof(monthSelect) === 'object')
+                props.setDate(
+                    [new Date(`${yearSelect}/${monthSelect[0]+1}/01`), new Date(`${yearSelect}/${monthSelect[1]+1}/01`)]
+                );
+            else
                 props.setDate([new Date(`${yearSelect}/${monthSelect+1}/01`)]);
-            }
         }
-
         setMenuActive(!menuActive);
     }
 
