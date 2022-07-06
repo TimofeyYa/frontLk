@@ -101,9 +101,9 @@ function DateController(props){
 
             //Проверка выбрали ли мы период
             if (typeof(monthSelect) === 'object'){
-                props.setDate([new Date(`${yearSelect}-${monthSelect[0]+1}-01`), new Date(`${yearSelect}-${monthSelect[1]+1}-01`)]);
+                props.setDate([new Date(`${yearSelect}/${monthSelect[0]+1}/01`), new Date(`${yearSelect}/${monthSelect[1]+1}/01`)]);
             }else{
-                props.setDate([new Date(`${yearSelect}-${monthSelect+1}-01`)]);
+                props.setDate([new Date(`${yearSelect}/${monthSelect+1}/01`)]);
             }
         }
 

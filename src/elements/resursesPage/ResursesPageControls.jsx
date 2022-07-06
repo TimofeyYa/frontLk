@@ -25,23 +25,23 @@ function ResursesPageControls(props){
     React.useEffect(()=>{
         if(props.date.length > 1){
             if (props.date[1].getMonth() + 2 === 13) {
-                setEndTime(new Date(`${props.date[1].getFullYear() + 1}-01-01`));
+                setEndTime(new Date(`${props.date[1].getFullYear() + 1}/01/01`));
             }else{
-                setEndTime(new Date(`${props.date[1].getFullYear()}-${props.date[1].getMonth() + 1}-01`));
+                setEndTime(new Date(`${props.date[1].getFullYear()}/${props.date[1].getMonth() + 1}/01`));
             }
-            setStartTime(new Date(`${props.date[0].getFullYear()}-${props.date[0].getMonth()+1}-01`));
+            setStartTime(new Date(`${props.date[0].getFullYear()}/${props.date[0].getMonth()+1}/01`));
         }else{
             if (props.fullYear){
-                setEndTime(new Date(`${props.date[0].getFullYear()}-12-31`))
-                setStartTime(new Date(`${props.date[0].getFullYear()}-01-01`))
+                setEndTime(new Date(`${props.date[0].getFullYear()}/12-/1`))
+                setStartTime(new Date(`${props.date[0].getFullYear()}/01/01`))
             }
             else{
                 if (props.date[0].getMonth() + 2 === 13) {
-                    setEndTime(new Date(`${props.date[0].getFullYear()}-${props.date[0].getMonth() + 1}-31`));
+                    setEndTime(new Date(`${props.date[0].getFullYear()}/${props.date[0].getMonth() + 1}/31`));
                 }else{
-                    setEndTime(new Date(`${props.date[0].getFullYear()}-${props.date[0].getMonth() + 2}-01`));
+                    setEndTime(new Date(`${props.date[0].getFullYear()}/${props.date[0].getMonth() + 2}/01`));
                 }
-                setStartTime(new Date(`${props.date[0].getFullYear()}-${props.date[0].getMonth()+1}-01`));
+                setStartTime(new Date(`${props.date[0].getFullYear()}/${props.date[0].getMonth()+1}/01`));
             }
         }
 
