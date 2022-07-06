@@ -1,12 +1,7 @@
 import React from "react";
 import getUserInfo from "../../functions/getUserInfo";
 import DateController from "../subElements/DateController";
-import NameLoader from "../loaders/NameLoader";
-import axios from "axios";
-import ServerData from "../../config/ServerData.config";
-import numberNormalize from "../../functions/numberNormalize";
-
-
+import NameLoader from "../subElements/loaders/NameLoader";
 
 function ResursesPageControls(props){
     const [name, setName] = React.useState("");

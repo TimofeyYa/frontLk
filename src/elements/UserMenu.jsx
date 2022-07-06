@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import HeaderLoader from "./loaders/HeaderLoader";
+import HeaderLoader from "./subElements/loaders/HeaderLoader";
 import CookieController from "../functions/CookieController";
 
 function UserMenu(props){

@@ -1,8 +1,8 @@
 import React from "react";
 import {useSearchParams} from 'react-router-dom';
 import CookieController from "../../functions/CookieController";
-import MainPageControls from "../../elements/mainPage/MainPageControls";
-import MainPageGrafics from "../../elements/mainPage/MainPageGrafics";
+import MainPageControls from "../../elements/budgetPage/BudgetPageControls";
+import MainPageGrafics from "../../elements/budgetPage/BudgetPageGrafics";
 import ScaleGraf from "../../elements/ScaleGraf";
 
 

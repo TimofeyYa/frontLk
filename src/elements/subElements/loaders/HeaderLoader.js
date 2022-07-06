@@ -12,7 +12,7 @@ const HeaderLoader = (props) => (
     {...props}
   >
     <rect x="1" y="3" rx="7" ry="7" width="250" height="18" />
-  </ContentLoader>
+  </ContentLoader> 
 )
 
 export default HeaderLoader;

@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import NumbersLoader from "../loaders/NumbersLoader";
+import NumbersLoader from "../subElements/loaders/NumbersLoader";
 import { useSearchParams } from "react-router-dom";
 import clasterData from "../../clasterData.json";
 import ServerData from "../../config/ServerData.config";
@@ -38,7 +38,7 @@ function ResurseGrafic(props){
             "power":[-1,-1,-1,-1],
             "usePower":[-1,-1,-1,-1]
         });
-        
+
         axios.get(`${new ServerData().getHost()}/params/lastDateRouter?token=${props.token}`) .then(function (response) {
             const date = dateToNormalString(new Date(response.data.data));
             if (response.data) setLastDate(date);
@@ -73,7 +73,7 @@ function ResurseGrafic(props){
             swapObj["usePower"][3] = numberNormalize(response.data.clasterStorage);
             setData(swapObj);
         })
-    }, [props.start, claster]);
+    }, [claster]);
 
     
     return(

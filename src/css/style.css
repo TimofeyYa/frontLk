@@ -747,3 +747,12 @@ footer{
     height: 10px;
     opacity: 0.9;
 }
+
+.prises__content{
+    padding: 36px 46px;
+}
+
+.staticTable__row{
+    display: grid;
+    
+}
