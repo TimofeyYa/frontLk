@@ -1,38 +1,21 @@
+import axios from 'axios';
 import React from 'react'
+import StaticTable from '../subElements/StaticTable';
+import ServerData from '../../config/ServerData.config';
 
-function PrisesPageContent(){
+function PrisesPageContent(props){
+    const [tableContent, setTableContent] = React.useState([]);
+
+    React.useEffect(()=>{
+        axios.get(`${new ServerData().getHost()}/params/prise/getPrise?token=${props.token}`)
+        .then(result => setTableContent(result.data.data))
+        .catch(e => console.log(e));
+    }, []);
+
     return(
         <section className="prises">
            <div className="whiteBlock prises__content">
-                <div className="staticTable">
-                    <div className="staticTable__row staticTable__rowHeader" style={{"grid-template-columns": "repeat(3,1fr)"}}>
-                        <div className="staticTable__rowItem">
-                            <h4>Наименование</h4>
-                        </div>
-
-                        <div className="staticTable__rowItem">
-                            <h4>Ед. Изм</h4>
-                        </div>
-
-                        <div className="staticTable__rowItem">
-                            <h4>Тариф</h4>
-                        </div>
-                    </div>
-                    
-                    <div className="staticTable__row">
-                        <div className="staticTable__rowItem">
-                            <h5>ПЛАТФ_ВС ОБЩ</h5>
-                        </div>
-
-                        <div className="staticTable__rowItem">
-                            <h5>1 pCPU</h5>
-                        </div>
-
-                        <div className="staticTable__rowItem">
-                            <h4>1 800,00</h4>
-                        </div>
-                    </div>
-                </div>
+                <StaticTable titles={["Наименование", "Ед. Изм", "Тариф", "Описание"]} columns={[2,2,1,4]} data={tableContent} sort={true}/>
            </div>
         </section>
     )

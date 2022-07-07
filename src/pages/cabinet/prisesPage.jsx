@@ -2,11 +2,10 @@ import React from "react";
 import CookieController from "../../functions/CookieController";
 import PrisesPageContent from "../../elements/prisesPage/PrisesPageContent";
 
-function PrisesPage (){ 
-    const KEY = CookieController.getCookie("userKey");
+function PrisesPage (props){ 
     return(
         <div className="pages__content">
-            <PrisesPageContent/>
+            <PrisesPageContent token={props.token}/>
         </div>
     )
 }

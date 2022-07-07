@@ -37,10 +37,6 @@ function MainPageGrafics(props){
         
     }, [props.date[0], props.date[1]])
 
-    React.useEffect(()=>{
-        console.log("Начальное время", startTime);
-        console.log("Конечное время", endTime);
-    }, [startTime])
     // для разграничения по кластерам
     let [searchParams, setSearchParams] = useSearchParams();
     let claster = searchParams.get("claster") || false;

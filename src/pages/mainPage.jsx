@@ -25,13 +25,13 @@ function MainPage (){
                     <PageNav/>
                     <div className="pages__content">
                         <Routes>
-                            <Route path="/budget" element={<Budget />}/>
-                            <Route path="/contacts" element={<Contacts />}/>
+                            <Route path="/budget" element={<Budget token={KEY} />}/>
+                            <Route path="/contacts" element={<Contacts token={KEY} />}/>
                             <Route path="/docs" element={<Docs />}/>
-                            <Route path="/prises" element={<Prise />}/>
-                            <Route path="/resurses" element={<Resurses />}/>
-                            <Route path="/SLA" element={<SLA />}/>
-                            <Route path="/*" element={<Navigate replace to="/cabinet/budget" />}/>
+                            <Route path="/prises" element={<Prise token={KEY} />}/>
+                            <Route path="/resurses" element={<Resurses token={KEY} />}/>
+                            <Route path="/SLA" element={<SLA token={KEY} />}/>
+                            <Route path="/*" element={<Navigate token={KEY} replace to="/cabinet/budget" />}/>
                         </Routes>
                     </div>
                 </div>

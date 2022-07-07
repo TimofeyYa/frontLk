@@ -6,10 +6,7 @@ import MainPageGrafics from "../../elements/budgetPage/BudgetPageGrafics";
 import ScaleGraf from "../../elements/ScaleGraf";
 
 
-function BudgetPage (){ 
-    // Работа с проверкой на наличее ключа
-    const KEY = CookieController.getCookie("userKey");
-        
+function BudgetPage (props){ 
     // Работа с параметрами для фильтрации
     const [searchParams] = useSearchParams();
     const [route] = React.useState(searchParams.get("route"));
@@ -25,8 +22,8 @@ function BudgetPage (){
   
         return(
             <div className="pages__content">
-                <MainPageControls token={KEY} fullYear={fullYear} setFullYear={setFullYear} route={route}  date={date} setDate={setDate}/>
-                <MainPageGrafics setScale={setScaleGraf} fullYear={fullYear} token={KEY} route={route}  date={date}/>
+                <MainPageControls token={props.token} fullYear={fullYear} setFullYear={setFullYear} route={route}  date={date} setDate={setDate}/>
+                <MainPageGrafics setScale={setScaleGraf} fullYear={fullYear} token={props.token} route={route}  date={date}/>
                 <ScaleGraf src={scaleGraf} setScale={setScaleGraf}/>
             </div>
         )

@@ -749,10 +749,34 @@ footer{
 }
 
 .prises__content{
-    padding: 36px 46px;
+    padding: 36px 28px;
 }
 
 .staticTable__row{
     display: grid;
     
+}
+
+.staticTable__rowItem{
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    padding:  10px 15px;
+    grid-column-gap: 4px;
+}
+
+.staticTable__rowItemPic{
+    transform: rotate(-180deg);
+}
+
+.staticTable__rowItemPic--rotate{
+    transform: rotate(0deg);
+}
+
+.staticTable__row .staticTable__rowItem:not(:first-child){
+    border-left: 1px solid var(--liteGray-color);
+}
+
+.staticTable__rowHeader{
+    border-bottom: 1px solid var(--liteGray-color);
 }
