@@ -13,13 +13,11 @@ function SLAPage (props){
      const [date,setDate] = React.useState([new Date()]);
      const [fullYear,setFullYear] = React.useState(false);
  
-     // Управление для scale
-     const [scaleGraf,setScaleGraf] = React.useState(false);
  
     return(
         <div className="pages__content">
             <SLAPageControls token={props.token} fullYear={fullYear} setFullYear={setFullYear} route={route}  date={date} setDate={setDate}/>
-            <SLAPageTable token={props.token}/>
+            <SLAPageTable fullYear={fullYear} token={props.token} date={date}/>
         </div>
     )
 }

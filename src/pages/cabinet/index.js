@@ -4,5 +4,3 @@ export {default as Contacts} from "./contactsPage";
 export {default as Prise} from "./prisesPage";
 export {default as Resurses} from "./resursesPage";
 export {default as SLA} from "./SLAPage";
-
-console.log(Number.isNaN(Number("dsa")))

@@ -18,7 +18,7 @@ function DateController(props){
     const controller = React.useRef(null)
 
     // Проверка на изменения в контроллере 
-    let edit = false;
+    let [edit, setEdit] = React.useState(false);
 
     React.useEffect(()=>{
         const dateMonth = month;
@@ -27,7 +27,7 @@ function DateController(props){
     },[]);
 
     React.useEffect(()=>{
-        edit = true;
+        setEdit(true);
     }, [yearSelect, monthSelect, props.fullYear])
 
     const allMonth = ['Январь', "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"]
@@ -35,7 +35,7 @@ function DateController(props){
     function selectMonth(num){
         let dateMonth = [0,0,0,0,0,0,0,0,0,0,0,0];
         
-        // Если выбран один из радомстоящий месяцев
+        // Если выбран один из рядомстоящих месяцев
         if (month[num + 1] === 1 || month[num - 1] === 1){
             // Проверке на то, не убрал ли пользователь один из средних месяцев
             if (month[num + 1] !== month[num - 1]){
@@ -92,34 +92,27 @@ function DateController(props){
         }
     }
 
+
     function menuControl(){
         if(!menuActive && edit){
-            edit = false;
+            setEdit(false);
             setYear(yearSelect);
 
             //Проверка выбрали ли мы период
-            if (typeof(monthSelect) === 'object')
+            if (typeof(monthSelect) === 'object'){
                 props.setDate(
                     [new Date(`${yearSelect}/${monthSelect[0]+1}/01`), new Date(`${yearSelect}/${monthSelect[1]+1}/01`)]
                 );
-            else
+            }
+            else{
                 props.setDate([new Date(`${yearSelect}/${monthSelect+1}/01`)]);
+            }
+            
         }
         setMenuActive(!menuActive);
     }
 
-
-    window.addEventListener('click',clickOutController);
-
-
-    function clickOutController({target}){
-        if (controller.current){
-            if (!controller.current.contains(target) && !menuActive){
-                menuControl();
-            }
-        }
-
-    }
+  
 
     return(
         <div className="pages__infoSelectWrap" ref={controller}>
