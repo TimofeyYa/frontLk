@@ -37,9 +37,9 @@ test:
 
 build:
   stage: build
-  only:
-    - merge_request
-    - main
+  # only:
+  #   - merge_request
+  #   - main
   tags:
     - frontbuilder
   script: 
@@ -50,9 +50,9 @@ build:
 
 stop:
   stage: stop
-  only:
-    - merge_request
-    - main
+  # only:
+  #   - merge_request
+  #   - main
   tags:
     - frontbuilder
   script: 
@@ -62,9 +62,9 @@ stop:
 
 start:
   stage: start
-  only:
-    - merge_request
-    - main
+  # only:
+  #   - merge_request
+  #   - main
   tags: 
     - frontbuilder
   script:

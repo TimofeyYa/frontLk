@@ -1,8 +1,17 @@
+import axios from 'axios';
 import React from 'react';
 import StaticTable from '../subElements/StaticTable'
+import ServerData from '../../config/ServerData.config';
 
-function SLAPageTable(){
-    let tableContent = [];
+function SLAPageTable(props){
+    let [tableContent, setTableContent] = React.useState([]);
+
+    React.useEffect(()=>{
+        axios.get(`${new ServerData().getHost()}/params/SLA/getSLA?token=${props.token}`)
+        .then(result => setTableContent(result.data.data))
+        .catch(e => console.log(e));
+    }, []);
+
     return (
         <section className="SLA">
            <div className="whiteBlock SLA__content">
