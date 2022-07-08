@@ -5,7 +5,7 @@ import PrisesPageContent from "../../elements/prisesPage/PrisesPageContent";
 function PrisesPage (props){ 
     return(
         <div className="pages__content">
-            <PrisesPageContent token={props.token}/>
+            <PrisesPageContent token={props.token}/> 
         </div>
     )
 }
