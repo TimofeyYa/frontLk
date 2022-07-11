@@ -5,6 +5,7 @@ import NameLoader from "../subElements/loaders/NameLoader";
 import axios from "axios";
 import ServerData from "../../config/ServerData.config";
 import numberNormalize from "../../functions/numberNormalize";
+import SumLoader from "../subElements/loaders/SumLoader";
 
 
 
@@ -18,7 +19,7 @@ function MainPageControls(props){
     // Для управления временем 
     const [endTime, setEndTime] = React.useState(new Date(`${props.date[0].getFullYear()}/${props.date[0].getMonth() + 2}/01`));
     const [startTime, setStartTime] = React.useState(new Date(`${props.date[0].getFullYear()}/${props.date[0].getMonth()+1}/01`));
-    const [sum, setSum] = React.useState(0);
+    const [sum, setSum] = React.useState(-1);
 
     React.useEffect(()=>{
         if(props.date.length > 1){
@@ -46,6 +47,7 @@ function MainPageControls(props){
     }, [props.date[0], props.date[1]])
 
     React.useEffect(()=>{
+        setSum(-1);
         axios.get(`${new ServerData().getHost()}/params/cost/getBudget?token=${props.token}&start=${`${startTime.getFullYear()}-${startTime.getMonth() + 1}-${startTime.getDate()}`}&end=${`${endTime.getFullYear()}-${endTime.getMonth() + 1}-${endTime.getDate()}`}`)
         .then(data=>{
             if (data.data.data[0])
@@ -98,7 +100,7 @@ function MainPageControls(props){
                         <h4>Сумма по заказчику</h4>
                     </div>
                     <div className="pages__infoTxtVariant">
-                        <h2>{sum} ₽</h2>
+                        {sum === -1 ? <SumLoader/> : <h2>{sum} ₽</h2>} 
                     </div>
                 </div>
             </div>
