@@ -15,11 +15,9 @@ function MainPageControls(props){
         getUserInfo(setName, "name");
     }, []);
 
-
     // Для управления временем 
-
-    const [endTime, setEndTime] = React.useState(new Date());
-    const [startTime, setStartTime] = React.useState(new Date());
+    const [endTime, setEndTime] = React.useState(new Date(`${props.date[0].getFullYear()}/${props.date[0].getMonth() + 2}/01`));
+    const [startTime, setStartTime] = React.useState(new Date(`${props.date[0].getFullYear()}/${props.date[0].getMonth()+1}/01`));
     const [sum, setSum] = React.useState(0);
 
     React.useEffect(()=>{

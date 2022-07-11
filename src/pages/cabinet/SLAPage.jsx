@@ -16,8 +16,8 @@ function SLAPage (props){
  
     return(
         <div className="pages__content">
-            <SLAPageControls token={props.token} fullYear={fullYear} setFullYear={setFullYear} route={route}  date={date} setDate={setDate}/>
-            <SLAPageTable fullYear={fullYear} token={props.token} date={date}/>
+            <SLAPageControls token={props.token} fullYear={props.fullYear} setFullYear={props.setFullYear} route={route}  date={props.date} setDate={props.setDate}/>
+            <SLAPageTable fullYear={props.fullYear} token={props.token} date={props.date}/>
         </div>
     )
 }

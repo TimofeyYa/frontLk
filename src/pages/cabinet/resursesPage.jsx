@@ -9,10 +9,6 @@ function ResursesPage (props){
     const [searchParams, setSearchParams] = useSearchParams();
     const route = searchParams.get("route");
 
-    // Работа с датой
-    const [date,setDate] = React.useState([new Date()]);
-    const [fullYear,setFullYear] = React.useState(false);
-
     // Управление для scale
     const [scaleGraf,setScaleGraf] = React.useState(false);
     let [thisRouteParams, setThisRouteParams] = React.useState([]);
@@ -29,13 +25,12 @@ function ResursesPage (props){
             setSearchParams({'route':thisLink[2][0][0]})
         }
     }, [route])
-
   
     return(
         <div className="pages__content">
             <div className="pages__content">
-                <ResursesPageControls token={props.token} fullYear={fullYear} setFullYear={setFullYear} route={route}  date={date} setDate={setDate}/>
-                <ResursesPageGrafics thisRouteParams={thisRouteParams[2]} setScale={setScaleGraf} fullYear={fullYear} token={props.token} route={route}  date={date}/>
+                <ResursesPageControls token={props.token} fullYear={props.fullYear} setFullYear={props.setFullYear} route={route}  date={props.date} setDate={props.setDate}/>
+                <ResursesPageGrafics thisRouteParams={thisRouteParams[2]} setScale={setScaleGraf} fullYear={props.fullYear} token={props.token} route={route}  date={props.date}/>
                 <ScaleGraf src={scaleGraf} setScale={setScaleGraf}/>
             </div>
         </div>

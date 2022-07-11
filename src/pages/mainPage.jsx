@@ -10,6 +10,10 @@ function MainPage (){
     // Работа с проверкой на наличее ключа
     const KEY = CookieController.getCookie("userKey");
 
+    // Работа с датой
+    const [date,setDate] = React.useState([new Date()]);
+    const [fullYear,setFullYear] = React.useState(false);
+
     if (!KEY){
         window.location.href = '/login';
         return;
@@ -35,12 +39,12 @@ function MainPage (){
                     <PageNav dataLinks={dataLinks}/>
                     <div className="pages__content">
                         <Routes>
-                            <Route path="/budget" element={<Budget dataLinks={dataLinks} token={KEY} />}/>
+                            <Route path="/budget" element={<Budget date={date} setDate={setDate} fullYear={fullYear} setFullYear={setFullYear}  dataLinks={dataLinks} token={KEY} />}/>
                             <Route path="/contacts" element={<Contacts token={KEY} />}/>
                             <Route path="/docs" element={<Docs />}/>
                             <Route path="/prises" element={<Prise token={KEY} />}/>
-                            <Route path="/resurses" element={<Resurses dataLinks={dataLinks} token={KEY} />}/>
-                            <Route path="/SLA" element={<SLA token={KEY} />}/>
+                            <Route path="/resurses" element={<Resurses date={date} setDate={setDate} fullYear={fullYear} setFullYear={setFullYear} dataLinks={dataLinks} token={KEY} />}/>
+                            <Route path="/SLA" element={<SLA date={date} setDate={setDate} fullYear={fullYear} setFullYear={setFullYear} token={KEY} />}/>
                             <Route path="/*" element={<Navigate token={KEY} replace to="/cabinet/budget" />}/>
                         </Routes>
                     </div>

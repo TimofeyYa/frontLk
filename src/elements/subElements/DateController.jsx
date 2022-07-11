@@ -20,11 +20,15 @@ function DateController(props){
     // Проверка на изменения в контроллере 
     let [edit, setEdit] = React.useState(false);
 
+    // Управление надписью
+    const [mountTitle, setMountTitle] = React.useState('');
+
     React.useEffect(()=>{
         const dateMonth = month;
         dateMonth[monthSelect] = 1;
         setMonth(dateMonth);
     },[]);
+
 
     React.useEffect(()=>{
         setEdit(true);
@@ -92,27 +96,42 @@ function DateController(props){
         }
     }
 
-
     function menuControl(){
         if(!menuActive && edit){
             setEdit(false);
             setYear(yearSelect);
 
+            if (props.fullYear)
+            setMountTitle(`(Полный год)`) ;
             //Проверка выбрали ли мы период
             if (typeof(monthSelect) === 'object'){
+                let secondDate;
+                if (monthSelect[1] === 12)  secondDate =  new Date(`${yearSelect}/12/31`);
+                else secondDate =  new Date(`${yearSelect}/${monthSelect[1]+1}/01`);
+
                 props.setDate(
-                    [new Date(`${yearSelect}/${monthSelect[0]+1}/01`), new Date(`${yearSelect}/${monthSelect[1]+1}/01`)]
+                    [new Date(`${yearSelect}/${monthSelect[0]+1}/01`), secondDate]
                 );
             }
             else{
                 props.setDate([new Date(`${yearSelect}/${monthSelect+1}/01`)]);
             }
-            
         }
         setMenuActive(!menuActive);
     }
 
-  
+
+    React.useEffect(()=>{       
+        if (props.fullYear) return;
+        else
+        if (props.date.length > 1){
+            let secondDate = allMonth[props.date[1].getMonth() - 1];
+            if (props.date[1].getMonth() === 11) secondDate = "Декабрь";
+            setMountTitle(`(${allMonth[props.date[0].getMonth()]} - ${secondDate})`) 
+        }else{
+            setMountTitle(`(${allMonth[props.date[0].getMonth()]})`) 
+        }
+    }, [props.date[0]])
 
     return(
         <div className="pages__infoSelectWrap" ref={controller}>
@@ -143,7 +162,7 @@ function DateController(props){
 
                         <div className="pages__infoTxt">
                             <div className="pages__infoTxtTitle">
-                                <h4>Период</h4>
+                                <h4>Период {mountTitle}</h4>
                             </div>
                             <div onClick={menuControl} className="pages__infoTxtVariant pages__infoTxtVariantSelect unselectable" id="dateGrafics">
                                 <h2>{year} год</h2>
