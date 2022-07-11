@@ -1,17 +1,13 @@
 import React from "react";
-import CookieController from "../../functions/CookieController";
 import ResursesPageControls from "../../elements/resursesPage/ResursesPageControls";
 import ResursesPageGrafics from "../../elements/resursesPage/ResursesPageGrafics";
 import ScaleGraf from "../../elements/ScaleGraf";
 import {useSearchParams} from 'react-router-dom'
 
-function ResursesPage (){ 
-    // Работа с проверкой на наличее ключа
-    const KEY = CookieController.getCookie("userKey");
-        
+function ResursesPage (props){         
     // Работа с параметрами для фильтрации
-    const [searchParams] = useSearchParams();
-    const [route] = React.useState(searchParams.get("route"));
+    const [searchParams, setSearchParams] = useSearchParams();
+    const route = searchParams.get("route");
 
     // Работа с датой
     const [date,setDate] = React.useState([new Date()]);
@@ -19,14 +15,27 @@ function ResursesPage (){
 
     // Управление для scale
     const [scaleGraf,setScaleGraf] = React.useState(false);
+    let [thisRouteParams, setThisRouteParams] = React.useState([]);
 
+    React.useEffect(()=>{
+        let thisLink = [];
+        props.dataLinks.forEach((link)=>{
+            if (link[0] === 'Ресурсы'){
+                thisLink= link;
+                setThisRouteParams(link);
+            }
+        })
+        if (route === null){
+            setSearchParams({'route':thisLink[2][0][0]})
+        }
+    }, [route])
 
   
     return(
         <div className="pages__content">
             <div className="pages__content">
-                <ResursesPageControls token={KEY} fullYear={fullYear} setFullYear={setFullYear} route={route}  date={date} setDate={setDate}/>
-                <ResursesPageGrafics setScale={setScaleGraf} fullYear={fullYear} token={KEY} route={route}  date={date}/>
+                <ResursesPageControls token={props.token} fullYear={fullYear} setFullYear={setFullYear} route={route}  date={date} setDate={setDate}/>
+                <ResursesPageGrafics thisRouteParams={thisRouteParams[2]} setScale={setScaleGraf} fullYear={fullYear} token={props.token} route={route}  date={date}/>
                 <ScaleGraf src={scaleGraf} setScale={setScaleGraf}/>
             </div>
         </div>

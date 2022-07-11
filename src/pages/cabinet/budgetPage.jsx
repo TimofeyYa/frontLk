@@ -16,8 +16,6 @@ function BudgetPage (props){
 
     // Управление для scale
     const [scaleGraf,setScaleGraf] = React.useState(false);
-
-
   
         return(
             <div className="pages__content">

@@ -57,7 +57,7 @@ function SLAPageTable(props){
                             "Нормативное время реакции", "SLA решения", "Время решения",
                             "Нормативное время решения", "Статус"]
                         }
-                        columns={[1,1,1,1,1,1,1,1,1,1]} data={tableContent} sort={true}/>
+                        columns={[1,1,1,1,1,1,1,1,1,1]} data={tableContent} sort={false}/>
                    </div>
                </div>
            </div>

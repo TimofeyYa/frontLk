@@ -38,7 +38,7 @@ function MainPageGrafics(props){
     }, [props.date[0], props.date[1]])
 
     // для разграничения по кластерам
-    let [searchParams, setSearchParams] = useSearchParams();
+    let [searchParams] = useSearchParams();
     let claster = searchParams.get("claster") || false;
     let route = searchParams.get("route") || false;
 

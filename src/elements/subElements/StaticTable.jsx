@@ -39,16 +39,18 @@ function StaticTable(props){
     }, [props.data])
 
     function changeTypeSortColumn(columnIndex){
-        const zeroArray = [];
-        for (let i = 0; i < props.titles.length; i++)
-        zeroArray.push(0);
-        switch(columnsSortType[columnIndex]){
-            case 0: zeroArray[columnIndex] = 1; break;
-            case 1: zeroArray[columnIndex] = -1; break;
-            case -1: zeroArray[columnIndex] = 0; break;
+        if (props.sort){
+            const zeroArray = [];
+            for (let i = 0; i < props.titles.length; i++)
+            zeroArray.push(0);
+            switch(columnsSortType[columnIndex]){
+                case 0: zeroArray[columnIndex] = 1; break;
+                case 1: zeroArray[columnIndex] = -1; break;
+                case -1: zeroArray[columnIndex] = 0; break;
+            }
+            setColumnsSortType(zeroArray);
+            sortTableByColumn(columnIndex,zeroArray[columnIndex]);
         }
-        setColumnsSortType(zeroArray);
-        sortTableByColumn(columnIndex,zeroArray[columnIndex]);
     }
 
     function sortTableByColumn(columnIndex, sortType){

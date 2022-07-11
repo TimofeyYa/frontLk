@@ -27,8 +27,14 @@ function ResurseGrafic(props){
         // Получаем иформацию о кластере
         let clasterId = -1
         if (claster != null){
-            clasterId = clasterData[claster]['clasterID'];
-            setPlatformName(`Ресурсы платформы ${clasterData[claster]['name']}`)
+            if (clasterData[claster]){
+                clasterId = clasterData[claster]['clasterID'];
+                setPlatformName(`Ресурсы платформы ${clasterData[claster]['name']}`)
+            } else {
+                clasterId = 0;
+                setPlatformName(`Ресурсы неизвестны для кластера "${claster}"`)
+            }
+
         }else{
             setPlatformName('Общие ресурсы платформы');
         }
@@ -87,11 +93,11 @@ function ResurseGrafic(props){
                     <div className="pages__graficsResurseBlockSec">
                         <div className="pages__graficsResurseBlockItem">
                             <h4>{data["claster"][0] === -1 ? <NumbersLoader/> : data["claster"][0]}</h4>
-                            <h5>Максимум Запущенных ВМ, шт</h5>
+                            <h5>MAX Запущенных ВМ, шт</h5>
                         </div>
                         <div className="pages__graficsResurseBlockItem">
                         <h4>{data["claster"][1] === -1 ? <NumbersLoader/> : data["claster"][1]}</h4>
-                            <h5>Максимум ВМ, шт</h5>
+                            <h5>Создано ВМ, шт</h5>
                         </div>
                         <div className="pages__graficsResurseBlockItem">
                         <h4>{data["claster"][2] === -1 ? <NumbersLoader/> : data["claster"][2]}</h4>
@@ -131,15 +137,15 @@ function ResurseGrafic(props){
                     <div className="pages__graficsResurseBlockSec">
                         <div className="pages__graficsResurseBlockItem">
                             <h4>{data["usePower"][0] === -1 ? <NumbersLoader/> : data["usePower"][0]}</h4>
-                            <h5>Средняя частота ядер, GHz</h5>
+                            <h5>Частота ядер, GHz</h5>
                         </div>
                         <div className="pages__graficsResurseBlockItem">
                             <h4>{data["usePower"][1] === -1 ? <NumbersLoader/> : data["usePower"][1]}</h4>
-                            <h5>Среднее кол-во vCPU, шт</h5>
+                            <h5>Кол-во vCPU, шт</h5>
                         </div>
                         <div className="pages__graficsResurseBlockItem">
                             <h4>{data["usePower"][2] === -1 ? <NumbersLoader/> : data["usePower"][2]}</h4>
-                            <h5>Среднее кол-во RAM, GB</h5>
+                            <h5>Кол-во RAM, GB</h5>
                         </div>
                         <div className="pages__graficsResurseBlockItem">
                             <h4>{data["usePower"][3] === -1 ? <NumbersLoader/> : data["usePower"][3]}</h4>

@@ -15,6 +15,16 @@ function MainPage (){
         return;
     }
 
+    // Структура нвигации сайта
+    const dataLinks = [
+        ["Бюджет", "/cabinet/budget", [["Общая", ["SRV-Bograda144","VDI-Bograda144", "Cluster-22a-1"]], ["Реестр"], ["УЗЗ"]]],
+        ["Ресурсы", "/cabinet/resurses", [["Общая", ["SRV-Bograda144","VDI-Bograda144", "Cluster-22a-1"]], ["Реестр", ['TEST']], ["УЗЗ"]]],
+        ["SLA", "/cabinet/SLA"],
+        ["Цены", "/cabinet/prises"],
+        ["Документы", "/cabinet/docs"], 
+        ["Контакты", "/cabinet/contacts"]
+   ]
+
     if (KEY.length > 10){
         return(
             <div className="container mainPageWrap">
@@ -22,14 +32,14 @@ function MainPage (){
                     <h1>Личный кабинет</h1>
                 </div>
                 <div className="pages__struct">
-                    <PageNav/>
+                    <PageNav dataLinks={dataLinks}/>
                     <div className="pages__content">
                         <Routes>
-                            <Route path="/budget" element={<Budget token={KEY} />}/>
+                            <Route path="/budget" element={<Budget dataLinks={dataLinks} token={KEY} />}/>
                             <Route path="/contacts" element={<Contacts token={KEY} />}/>
                             <Route path="/docs" element={<Docs />}/>
                             <Route path="/prises" element={<Prise token={KEY} />}/>
-                            <Route path="/resurses" element={<Resurses token={KEY} />}/>
+                            <Route path="/resurses" element={<Resurses dataLinks={dataLinks} token={KEY} />}/>
                             <Route path="/SLA" element={<SLA token={KEY} />}/>
                             <Route path="/*" element={<Navigate token={KEY} replace to="/cabinet/budget" />}/>
                         </Routes>

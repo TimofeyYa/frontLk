@@ -14,18 +14,25 @@ function DetailGrafic(props){
     const [urlChastot, setUrlChastot] = React.useState(false);
     const [urlStorage, setUrlStorage] = React.useState(false);
 
+    const [hideAllBoolean,setHideAllBoolean ] = React.useState(true);
     React.useEffect(()=>{
         setUrlVm(false);
         setUrlRam(false);
         setUrlChastot(false);
         setUrlStorage(false);
         if (claster != null){
-            setPlatformName(`Детализация показателей по платформе ${clasterData[claster]['name']}`)
+            if (clasterData[claster]){
+                setPlatformName(`Детализация показателей по платформе ${clasterData[claster]['name']}`)
 
-            getComponents(setUrlVm,`datail-vm-${clasterData[claster]['name']}`)
-            getComponents(setUrlRam,`datail-Ram-${clasterData[claster]['name']}`)
-            getComponents(setUrlChastot,`datail-Chastot-${clasterData[claster]['name']}`)
-            getComponents(setUrlStorage,`datail-storage-${clasterData[claster]['name']}`)
+                getComponents(setUrlVm,`datail-vm-${clasterData[claster]['name']}`)
+                getComponents(setUrlRam,`datail-Ram-${clasterData[claster]['name']}`)
+                getComponents(setUrlChastot,`datail-Chastot-${clasterData[claster]['name']}`)
+                getComponents(setUrlStorage,`datail-storage-${clasterData[claster]['name']}`)
+            }else{
+                setPlatformName(`Детализация неизвестна для платформы "${claster}"`)
+                setHideAllBoolean(false);
+            }
+            
         }else{
             setPlatformName('Детализация показателей');
         }
@@ -36,6 +43,7 @@ function DetailGrafic(props){
             <div className="pages__graficsBlockTitle">
                 <h2>{platformName}</h2>
             </div>
+            { hideAllBoolean &&
             <div className="pages__graficsBlock pages__graficsDetailBlock">
             <div className="whiteBlock pages__graficsDetailBlockItem">
                     {urlVM && <iframe title="bigGraf" src={urlVM && `${urlVM}&from=${props.start}&to=${props.end}`} width="100%" height="100%" frameBorder="0"></iframe>} 
@@ -74,6 +82,7 @@ function DetailGrafic(props){
                     </div>
             </div>
             </div>
+            }
         </div>
     )
 }

@@ -26,7 +26,7 @@ body{
     flex-direction: column;
     justify-content: space-between;
     align-items: stretch;
-    min-height: 100vh;
+    min-height: 120vh;
 }
 
 .container{
@@ -755,7 +755,17 @@ footer{
 
 .staticTable__row{
     display: grid;
-    
+    transition: background-color 0.3s;
+    transition-delay: 0.15s;
+}
+
+.staticTable__row:hover{
+    background-color: var(--liteGray-color);
+    transition-delay: 0.05s;
+}
+
+.staticTable__row:hover .staticTable__rowItem:not(:first-child){
+    border-left: 1px solid white;
 }
 
 .staticTable__rowItem{

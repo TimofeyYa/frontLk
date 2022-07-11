@@ -38,6 +38,13 @@ function ResursesPageGrafics(props){
     let claster = searchParams.get("claster") || false;
     let route = searchParams.get("route") || false;
 
+    React.useEffect(()=>{
+        props.thisRouteParams && props.thisRouteParams.forEach((routeArr)=>{
+            if (routeArr[0] === route && !claster && routeArr[1]){
+                setSearchParams({"route":route,'claster': routeArr[1][0]})
+            }
+        })
+    }, [props.thisRouteParams, route, claster])
 
     if (!route){
         return(
