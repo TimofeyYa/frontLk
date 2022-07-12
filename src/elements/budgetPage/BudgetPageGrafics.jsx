@@ -3,6 +3,7 @@ import BigGrafic from "../grafics/BigGrafic";
 import CostGrafic from "../grafics/CostGrafic";
 import DetailGrafic from "../grafics/DetailGrafic";
 import TableGrafic from "../grafics/TableGrafic";
+import StaticTable from "../subElements/StaticTable";
 
 import { useSearchParams } from "react-router-dom";
 
@@ -47,7 +48,15 @@ function MainPageGrafics(props){
         return(
             <section className="pages__grafics">
                 <BigGrafic start={startTime.getTime()} end={endTime.getTime()}/>
-                <TableGrafic start={startTime.getTime()} end={endTime.getTime()}/>
+                <div className="whiteBlock budget__staticTable">
+                    <StaticTable titles={["Наименование платформы", "Бюджет"]} columns={[3,1]}
+                    data={
+                        [{"Название": "Платформа Общая", "Деньги": props.sumForMyTable},
+                        {"Название": "Платформа Реестр", "Деньги": 0},
+                        {"Название": "Платформа УЗ3", "Деньги": 0}]
+                        }
+                    sort={true}/>
+                </div>
             </section>
         )
     }else{
@@ -55,7 +64,7 @@ function MainPageGrafics(props){
             return(
                 <section className="pages__grafics">
                     {claster && <CostGrafic start={startTime.getTime()} end={endTime.getTime()}/>        }
-                    {claster && <DetailGrafic setScale={props.setScale} start={startTime.getTime()} end={endTime.getTime()}/>}
+                    {claster && <DetailGrafic hideGrafics={[3]} setScale={props.setScale} start={startTime.getTime()} end={endTime.getTime()}/>}
                 </section>
             )
         }else{

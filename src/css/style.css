@@ -249,7 +249,7 @@ select {
 
 
 .pages__navItem .lines{
-    width: 40px;
+    width: 20px;
     background-color: var(--orange-color);
     display: none;
 }
@@ -628,7 +628,7 @@ footer{
     margin-bottom: 50px;
 }
 
-.pages__graficsDetailBlockItem:last-child{
+.pages__graficsDetailBlockItem:nth-child(n + 5){
     grid-column-start: 1;
     grid-column-end: 3;
     height: 400px;
@@ -814,4 +814,8 @@ footer{
 
 .staticTableWrap{
     min-height: 350px;
+}
+
+.budget__staticTable{
+    padding: 28px 32px;
 }

@@ -57,8 +57,7 @@ function ResursesPageGrafics(props){
             return(
                 <section className="pages__grafics">
                     {claster && <ResurseGrafic token={props.token} start={startTime.getTime()} end={endTime.getTime()}/>   }
-                    {claster && <DetailGrafic setScale={props.setScale} start={startTime.getTime()} end={endTime.getTime()}/>}
-                    
+                    {claster && <DetailGrafic hideGrafics={[]} setScale={props.setScale} start={startTime.getTime()} end={endTime.getTime()}/>}
                 </section>
             )
         }else{

@@ -51,10 +51,15 @@ function MainPageControls(props){
         axios.get(`${new ServerData().getHost()}/params/cost/getBudget?token=${props.token}&start=${`${startTime.getFullYear()}-${startTime.getMonth() + 1}-${startTime.getDate()}`}&end=${`${endTime.getFullYear()}-${endTime.getMonth() + 1}-${endTime.getDate()}`}`)
         .then(data=>{
             if (data.data.data[0])
-            if (data.data.data[0].sum == null)
-            setSum(0);
-            else
-            setSum(numberNormalize(data.data.data[0].sum));
+            if (data.data.data[0].sum == null){
+                setSum(0);
+                props.setSumForMyTable(0)
+            }
+            else{
+                setSum(numberNormalize(data.data.data[0].sum));
+                props.setSumForMyTable(numberNormalize(data.data.data[0].sum))
+            }
+            
         }).catch(e=>{
             setSum(0);
             console.log(e);

@@ -47,7 +47,7 @@ function DetailGrafic(props){
             </div>
             { hideAllBoolean &&
             <div className="pages__graficsBlock pages__graficsDetailBlock">
-            <div className="whiteBlock pages__graficsDetailBlockItem">
+            {props.hideGrafics.indexOf(1) === -1 && <div className="whiteBlock pages__graficsDetailBlockItem">
                     {urlVM && <iframe title="bigGraf" src={urlVM && `${urlVM}&from=${props.start}&to=${props.end}`} width="100%" height="100%" frameBorder="0"></iframe>} 
                     <div className="scaller" onClick={()=>props.setScale(`${urlVM}&from=${props.start}&to=${props.end}`)}>
                         <svg  version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 485.213 485.213" >
@@ -55,8 +55,8 @@ function DetailGrafic(props){
                             <path d="M471.882,407.567L360.567,296.243c-16.586,25.795-38.536,47.734-64.331,64.321l111.324,111.324    c17.772,17.768,46.587,17.768,64.321,0C489.654,454.149,489.654,425.334,471.882,407.567z"/>
                         </svg>
                     </div>
-            </div>
-            <div className="whiteBlock pages__graficsDetailBlockItem">
+            </div> }
+            {props.hideGrafics.indexOf(2) === -1 && <div className="whiteBlock pages__graficsDetailBlockItem">
                     {urlRam && <iframe title="bigGraf" src={urlRam && `${urlRam}&from=${props.start}&to=${props.end}`} width="100%" height="100%" frameBorder="0"></iframe>} 
                     <div className="scaller" onClick={()=>props.setScale(`${urlRam}&from=${props.start}&to=${props.end}`)}>
                         <svg  version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 485.213 485.213" >
@@ -64,8 +64,8 @@ function DetailGrafic(props){
                             <path d="M471.882,407.567L360.567,296.243c-16.586,25.795-38.536,47.734-64.331,64.321l111.324,111.324    c17.772,17.768,46.587,17.768,64.321,0C489.654,454.149,489.654,425.334,471.882,407.567z"/>
                         </svg>
                     </div>
-            </div>
-            <div className="whiteBlock pages__graficsDetailBlockItem">
+            </div> }
+            {props.hideGrafics.indexOf(3) === -1 && <div className="whiteBlock pages__graficsDetailBlockItem">
                     {urlChastot && <iframe title="bigGraf" src={urlChastot && `${urlChastot}&from=${props.start}&to=${props.end}`} width="100%" height="100%" frameBorder="0"></iframe>} 
                     <div className="scaller" onClick={()=>props.setScale(`${urlChastot}&from=${props.start}&to=${props.end}`)}>
                         <svg  version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 485.213 485.213" >
@@ -73,8 +73,8 @@ function DetailGrafic(props){
                             <path d="M471.882,407.567L360.567,296.243c-16.586,25.795-38.536,47.734-64.331,64.321l111.324,111.324    c17.772,17.768,46.587,17.768,64.321,0C489.654,454.149,489.654,425.334,471.882,407.567z"/>
                         </svg>
                     </div>
-            </div>
-            <div className="whiteBlock pages__graficsDetailBlockItem">
+            </div> }
+            {props.hideGrafics.indexOf(4) === -1 && <div className="whiteBlock pages__graficsDetailBlockItem">
                     {urlStorage && <iframe title="bigGraf" src={urlStorage && `${urlStorage}&from=${props.start}&to=${props.end}`} width="100%" height="100%" frameBorder="0"></iframe>} 
                     <div className="scaller" onClick={()=>props.setScale(`${urlStorage}&from=${props.start}&to=${props.end}`)}>
                         <svg  version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 485.213 485.213" >
@@ -82,8 +82,8 @@ function DetailGrafic(props){
                             <path d="M471.882,407.567L360.567,296.243c-16.586,25.795-38.536,47.734-64.331,64.321l111.324,111.324    c17.772,17.768,46.587,17.768,64.321,0C489.654,454.149,489.654,425.334,471.882,407.567z"/>
                         </svg>
                     </div>
-            </div>
-            <div className="whiteBlock pages__graficsDetailBlockItem">
+            </div> }
+            {props.hideGrafics.indexOf(5) === -1 && <div className="whiteBlock pages__graficsDetailBlockItem">
                     {urlVirtCpu && <iframe title="bigGraf" src={urlVirtCpu && `${urlVirtCpu}&from=${props.start}&to=${props.end}`} width="100%" height="100%" frameBorder="0"></iframe>} 
                     <div className="scaller" onClick={()=>props.setScale(`${urlVirtCpu}&from=${props.start}&to=${props.end}`)}>
                         <svg  version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 485.213 485.213" >
@@ -91,7 +91,7 @@ function DetailGrafic(props){
                             <path d="M471.882,407.567L360.567,296.243c-16.586,25.795-38.536,47.734-64.331,64.321l111.324,111.324    c17.772,17.768,46.587,17.768,64.321,0C489.654,454.149,489.654,425.334,471.882,407.567z"/>
                         </svg>
                     </div>
-            </div>
+            </div>}
             </div>
             }
         </div>

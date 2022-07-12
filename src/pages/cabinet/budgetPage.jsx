@@ -10,15 +10,16 @@ function BudgetPage (props){
     const [searchParams] = useSearchParams();
     const [route] = React.useState(searchParams.get("route"));
 
-    
+    // Для нашей таблицы с сумой по кластеру - сейчас просто тестовый вариант
+    const [sumForMyTable, setSumForMyTable] = React.useState(0); 
 
     // Управление для scale
     const [scaleGraf,setScaleGraf] = React.useState(false);
   
         return(
             <div className="pages__content">
-                <MainPageControls token={props.token} fullYear={props.fullYear} setFullYear={props.setFullYear} route={route}  date={props.date} setDate={props.setDate}/>
-                <MainPageGrafics setScale={setScaleGraf} fullYear={props.fullYear} token={props.token} route={route}  date={props.date}/>
+                <MainPageControls setSumForMyTable={setSumForMyTable} token={props.token} fullYear={props.fullYear} setFullYear={props.setFullYear} route={route}  date={props.date} setDate={props.setDate}/>
+                <MainPageGrafics sumForMyTable={sumForMyTable} setScale={setScaleGraf} fullYear={props.fullYear} token={props.token} route={route}  date={props.date}/>
                 <ScaleGraf src={scaleGraf} setScale={setScaleGraf}/>
             </div>
         )
