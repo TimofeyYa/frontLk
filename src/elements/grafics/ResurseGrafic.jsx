@@ -29,7 +29,7 @@ function ResurseGrafic(props){
         if (claster != null){
             if (clasterData[claster]){
                 clasterId = clasterData[claster]['clasterID'];
-                setPlatformName(`Ресурсы платформы ${clasterData[claster]['name']}`)
+                setPlatformName(`Ресурсы платформы ${clasterData[claster]['localName']}`)
             } else {
                 clasterId = 0;
                 setPlatformName(`Ресурсы неизвестны для кластера "${claster}"`)

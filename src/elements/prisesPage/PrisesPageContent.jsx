@@ -15,7 +15,7 @@ function PrisesPageContent(props){
     return(
         <section className="prises">
            <div className="whiteBlock prises__content">
-                <StaticTable titles={["Наименование", "Ед. Изм", "Тариф", "Описание"]} columns={[2,2,1,4]} data={tableContent} sort={true}/>
+                <StaticTable titles={["Наименование", "Ед. Изм", "Тариф (c НДС)", "Описание"]} columns={[2,2,2,4]} data={tableContent} sort={true}/>
            </div>
         </section>
     )

@@ -46,7 +46,8 @@ function MainPageGrafics(props){
     if (!route){
         return(
             <section className="pages__grafics">
-                <BigGrafic start={startTime.getTime()} end={endTime.getTime()}/> 
+                <BigGrafic start={startTime.getTime()} end={endTime.getTime()}/>
+                <TableGrafic start={startTime.getTime()} end={endTime.getTime()}/>
             </section>
         )
     }else{

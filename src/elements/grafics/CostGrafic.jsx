@@ -9,8 +9,6 @@ function CostGrafic(props){
     let [searchParams, setSearchParams] = useSearchParams();
     let claster = searchParams.get("claster");
 
-
-
     const [urlDiagram,setUrlDiagram] = React.useState(false);
     const [urlTable,setUrlTable] = React.useState(false);
 
@@ -18,9 +16,13 @@ function CostGrafic(props){
         setUrlDiagram(false);
         setUrlTable(false);
         if (claster != null){
-            setPlatformName(`Расходы по платформе ${clasterData[claster]['name']}`)
-            getComponents(setUrlDiagram,`cost-diagram-${clasterData[claster]['name']}`);
-            getComponents(setUrlTable,`cost-table-${clasterData[claster]['name']}`)
+            try{
+                setPlatformName(`Расходы по платформе ${clasterData[claster]['localName']}`)
+                getComponents(setUrlDiagram,`cost-diagram-${clasterData[claster]['localName']}`);
+                getComponents(setUrlTable,`cost-table-${clasterData[claster]['localName']}`)
+            }catch(e){
+                console.log(e)
+            }
         }else{
             setPlatformName('Расходы');
         }

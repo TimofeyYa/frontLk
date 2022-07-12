@@ -30,7 +30,7 @@ body{
 }
 
 .container{
-    max-width: 1334px;
+    max-width: 1500px;
     width: 100%;
     margin: 0 auto;
     padding: 0 20px;
@@ -139,7 +139,7 @@ select {
 
 .pages__struct{
     display: grid;
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: 250px 1fr;
     grid-column-gap: 20px;
 }
 
@@ -621,15 +621,21 @@ footer{
     display: grid;
     grid-template-columns: repeat(2,1fr);
     grid-gap: 15px;
+    
 }
 
 .pages__graficsBlockWrap:not(:last-child){
     margin-bottom: 50px;
 }
 
+.pages__graficsDetailBlockItem:last-child{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    height: 400px;
+}
 .pages__graficsDetailBlockItem{
     padding: 10px;
-    min-height: 193px;
+    min-height: 230px;
     position: relative;
 }
 
@@ -715,9 +721,10 @@ footer{
 
 .popup__contentScale{
     padding: 25px;
-    width: 1000px;
+    width: 1100px;
     position: relative;
     height: 600px;
+    margin: 25px;
 }
 
 .popup-none{
@@ -797,12 +804,12 @@ footer{
 }
 
 .SLA__tableWrap{
-    overflow: scroll;
-    max-height: 600px;
+    overflow-y: scroll;
+    max-height: 650px;
 }
 
 .SLA__tableWrapContent{
-    width: 160%;
+    min-width: 100%;
 }
 
 .staticTableWrap{

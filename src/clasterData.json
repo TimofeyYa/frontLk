@@ -1,14 +1,17 @@
 {
-    "VDI-Bograda144":{
+    "ВРС Красноярск":{
         "clasterID": 2,
-        "name": "VDI-Bograda144"
+        "name": "ВРС Красноярск",
+        "localName": "VDI-Bograda144"
     },
-    "SRV-Bograda144":{
+    "ВС Красноярск":{
         "clasterID": 1,
-        "name": "SRV-Bograda144"
+        "name": "ВС Красноярск",
+        "localName": "SRV-Bograda144"
     },
-    "Cluster-22a-1":{
+    "ВРС Барнаул":{
         "clasterID": 3,
-        "name": "Cluster-22a-1"
+        "name": "ВРС Барнаул",
+        "localName": "Cluster-22a-1"
     }
 }

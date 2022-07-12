@@ -12,6 +12,8 @@ function TableGrafic(props){
         setUrlTable(false);
         if (route != null){
             getComponents(setUrlTable,`budget-table-${route}`)
+        }else{
+            getComponents(setUrlTable,`budget-table`)
         }
     }, [route])
 
