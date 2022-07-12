@@ -223,7 +223,7 @@ select {
 .header__bottom{
     padding-top: 20px;
     padding-bottom: 22px;
-    border-bottom: 1px solid #E9EFF5;
+    /* border-bottom: 1px solid #E9EFF5; */
     background: white;
 }
 
@@ -306,16 +306,34 @@ select {
 }
 
 .pages__info{
+    height:  95px;
+}
+.pages__infoWrap{
     display: grid;
     grid-column-gap: 20px;
+    position: relative;
+    z-index: 15;
 }
 
-.pages__info--mainPage{
+.pages__info--mainPage .pages__infoWrap{
     grid-template-columns: 4fr 3fr 3fr;
 }
 
-.pages__info--resurses{
+.pages__info--resurses .pages__infoWrap{
     grid-template-columns: 7fr 3fr;
+}
+
+.pages__infoWrap--goHead{
+    position: fixed;
+    width: 1190px;
+    top:34px;
+}
+
+.pages__infoWrap--goHead .whiteBlock{
+    box-shadow: none;
+
+    border-radius: 0px;
+    border: 1px solid #E9EFF5;
 }
 
 .pages__infoBlock{

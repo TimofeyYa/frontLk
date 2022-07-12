@@ -32,9 +32,9 @@ function MainPage (){
     if (KEY.length > 10){
         return(
             <div className="container mainPageWrap">
-                <div className="pages__title">
+                {/* <div className="pages__title">
                     <h1>Личный кабинет</h1>
-                </div>
+                </div> */}
                 <div className="pages__struct">
                     <PageNav dataLinks={dataLinks}/>
                     <div className="pages__content">
