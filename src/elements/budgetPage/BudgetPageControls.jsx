@@ -6,7 +6,7 @@ import axios from "axios";
 import ServerData from "../../config/ServerData.config";
 import numberNormalize from "../../functions/numberNormalize";
 import SumLoader from "../subElements/loaders/SumLoader";
-
+import classNames from "classnames";
 
 
 function MainPageControls(props){
@@ -68,10 +68,20 @@ function MainPageControls(props){
 
 
 
-
+    const [fixed, setFixed] = React.useState(false);
+    const sectionForScrollEvent = React.useRef(null);
+    React.useEffect(()=>{
+        window.addEventListener('scroll', ()=>{
+            if (window.scrollY > sectionForScrollEvent.current.offsetTop - 40){
+                setFixed(true)
+            }else{
+                setFixed(false)
+            }
+        })
+    })
     return(
-        <section className="pages__info pages__info--mainPage">
-            <div className="pages__infoWrap">
+        <section ref={sectionForScrollEvent} className="pages__info pages__info--mainPage">
+            <div className={classNames("pages__infoWrap", {"pages__infoWrap--goHead": fixed})}>
                 <div className="whiteBlock pages__infoBlock">
                     <div className="pages__infoPic">
                         <div className="pages__infoPicWrap">
